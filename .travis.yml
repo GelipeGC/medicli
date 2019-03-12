@@ -10,8 +10,8 @@ addons:
 services:
   - mysql
 install:
-  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
-  - npm run production
+  - cp .env.dusk.testing .env
+  - travis_retry
 
 before_script:
   - cp .env.travis .env
