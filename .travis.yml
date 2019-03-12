@@ -7,9 +7,6 @@ php:
 
 services:
   - mysql
-install:
-  - cp .env.dusk.testing .env
-  - travis_retry
 
 before_script:
   - cp .env.travis .env
@@ -18,15 +15,9 @@ before_script:
   - composer install --no-interaction
   - php artisan key:generate
   - php artisan migrate --seed
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - ./vendor/laravel/dusk/bin/chromedriver-linux &  
-  - php artisan serve &
 
 script:
   - vendor/bin/phpunit
-  - php artisan dusk
-
 
 notifications:
   email:
