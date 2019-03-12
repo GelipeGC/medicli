@@ -1,6 +1,7 @@
 language: php
 
 php:
+  - 7.1
   - 7.2
 
 addons:
@@ -8,6 +9,9 @@ addons:
 
 services:
   - mysql
+install:
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - npm run production
 
 before_script:
   - cp .env.travis .env
