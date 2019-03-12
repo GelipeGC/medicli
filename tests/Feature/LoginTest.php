@@ -37,6 +37,53 @@ class LoginTest extends TestCase
             ->assertSuccessful()
             ->assertJsonStructure(['id', 'name', 'email']);
     }
+    
+    /** @test */
+    function the_email_is_required()
+    {
+        $this->handleValidationExceptions();
+
+        $this->postJson('/api/login', [
+            'email' => ''
+        ])
+        ->assertJsonValidationErrors(['email']);
+
+    }
+    /** @test */
+    function the_password_is_required()
+    {
+        $this->handleValidationExceptions();
+
+        $this->postJson('/api/login', [
+            'password' => ''
+        ])
+        ->assertJsonValidationErrors(['email']);
+
+    }
+    /** @test */
+    function the_email_must_be_valid()
+    {
+        $this->handleValidationExceptions();
+
+        $this->postJson('/api/login',[
+            'email' => 'invalid-email',
+            'password' => 'secret'
+        ])
+        ->assertJsonValidationErrors(['email']);
+
+    }
+    /** @test */
+    function the_password_must_be_valid()
+    {
+        $this->handleValidationExceptions();
+
+        $this->postJson('/api/login',[
+            'email' => $this->user->email,
+            'password' => 'invalid'
+        ])
+        ->assertJsonValidationErrors(['email']);
+
+    }
 
     /** @test */
     public function log_out()
