@@ -4,6 +4,8 @@ $config = [
     'locale' => $locale = app()->getLocale(),
     'locales' => config('app.locales'),
     'githubAuth' => config('services.github.client_id'),
+    'facebookAuth' => config('services.facebook.client_id'),
+    'twitterAuth' => config('services.twitter.client_id')
 ];
 
 $polyfills = [

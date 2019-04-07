@@ -19,6 +19,7 @@ class OAuthController extends Controller
         config([
             'services.facebook.redirect' => route('oauth.callback', 'facebook'),
             'services.github.redirect' => route('oauth.callback', 'github'),
+            'services.twitter.redirect' => route('oauth.callback', 'twitter'),
         ]);
     }
     
@@ -26,6 +27,7 @@ class OAuthController extends Controller
     {
         try {
             return [
+                //'url' => Socialite::driver($provider)->stateless()->redirect()->getTargetUrl(),
                 'url' => Socialite::driver($provider)->stateless()->redirect()->getTargetUrl(),
             ];
         } catch (\InvalidArgumentException $e) {

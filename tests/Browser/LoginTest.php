@@ -22,14 +22,15 @@ class LoginTest extends DuskTestCase
                     ->type('password', 'secret')
                     ->press('Log In')
                     ->pause(350)
-                    ->assertPathIs('/home');
+                    ->assertPageIs(HomePage::class);
+
         });
     }
     /** @test */
     function login_with_invalid_credentials()
     {
         $this->browse(function (Browser $browser)  {
-            $browser->visit('/login')
+            $browser->visit(new Login)
                     ->type('email', 'test@test.com')
                     ->type('password', 'secret')
                     ->press('Log In')

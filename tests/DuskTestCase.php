@@ -10,13 +10,13 @@ use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-/* Browser::macro('assertPageIs', function ($page) {
+Browser::macro('assertPageIs', function ($page) {
     if (!$page instanceof Page) {
         $page = new $page;
     }
 
-    return $this->assertathIs($page->url());
-}); */
+    return $this->assertPathIs($page->url());
+});
 
 abstract class DuskTestCase extends BaseTestCase
 {

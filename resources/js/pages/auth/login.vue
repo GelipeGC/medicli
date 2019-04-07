@@ -36,14 +36,16 @@
           </div>
 
           <div class="form-group row">
-            <div class="col-md-7 offset-md-3 d-flex">
+            <div class="col-md-9 offset-md-3 d-flex">
               <!-- Submit Button -->
               <v-button :loading="form.busy">
                 {{ $t('login') }}
               </v-button>
                 
               <!-- GitHub Login Button -->
-              <login-with-github/>
+<!--               <login-with-github/>
+ -->              <login-with-facebook/>
+              <login-with-twitter/>
             </div>
           </div>
         </form>
@@ -55,12 +57,16 @@
 <script>
 import Form from 'vform'
 import LoginWithGithub from '~/components/LoginWithGithub'
+import LoginWithFacebook from '~/components/LoginWithFacebook'
+import LoginWithTwitter from '~/components/LoginWithTwitter'
 
 export default {
   middleware: 'guest',
 
   components: {
     LoginWithGithub,
+    LoginWithFacebook,
+    LoginWithTwitter
   },
 
   metaInfo () {

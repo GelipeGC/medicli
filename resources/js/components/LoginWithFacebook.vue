@@ -1,10 +1,11 @@
 <template>
-    <button  
-            class="btn btn-primary"
+    <button  v-if="facebookAuth"
+            class="btn btn-primary ml-auto"
             type="button"
             @click="login">
         {{ $t('login_with') }}
-        <fa :icon="['fab', 'fa-facebook']"/>
+        <fa :icon="['fab', 'facebook']"/>
+
     </button>
 </template>
 
@@ -31,7 +32,7 @@ export default {
             const url = await this.$store.dispatch('auth/fetchOauthUrl', {
                 provider: 'facebook'
             })
-
+            console.log(url)
             newWindow.location.href = url
         },
 
