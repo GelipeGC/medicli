@@ -1,12 +1,12 @@
-## Project base for laravel and vuejs
+## Project medicli
 
-[![Build Status](https://travis-ci.org/GelipeGC/base-laravel.svg?branch=master)](https://travis-ci.org/GelipeGC/base-laravel.svg?branch=master)    
+[![Build Status](https://travis-ci.org/GelipeGC/medicli.svg?branch=master)](https://travis-ci.org/GelipeGC/medicli.svg?branch=master)    
 
 ## Ho to use it
 
 - Clone this repository and enter it:
 ```
-git clone https://github.com/GelipeGC/base-laravel.git
+git clone https://github.com/GelipeGC/medicli.git
 ```
 - Composer Install:
 ```

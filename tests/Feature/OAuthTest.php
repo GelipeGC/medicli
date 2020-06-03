@@ -8,7 +8,7 @@ use App\User;
 use Mockery as m;
 use Laravel\Socialite\Facades\Socialite;
 use PHPUnit\Framework\Assert as PHPUnit;
-use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Testing\TestResponse;
 use Laravel\Socialite\Two\User as SocialiteUser;
 
 class OAuthTest extends TestCase
