@@ -3,9 +3,9 @@ import store from '~/store'
 import router from '~/router'
 import i18n from '~/plugins/i18n'
 import App from '~/components/App'
-import Vuetify from 'vuetify'
+import ArgonDashboard from 'vue-argon-dashboard/src/plugins/argon-dashboard'
 
-Vue.use(Vuetify)
+Vue.use(ArgonDashboard);
 
 import '~/plugins'
 import '~/components'
@@ -14,8 +14,8 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  i18n,
-  store,
-  router,
-  ...App
+    i18n,
+    store,
+    router,
+    ...App
 })

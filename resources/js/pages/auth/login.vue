@@ -1,13 +1,16 @@
 <template>
-  <div class="row">
-    <div class="col-lg-8 m-auto">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
       <card :title="$t('login')">
-        <form @submit.prevent="login" @keydown="form.onKeydown($event)">
+      <div class="text-center text-muted mb-4">
+                            <small>Or sign in with credentials</small>
+                        </div>
+        <form @submit.prevent="login" @keydown="form.onKeydown($event)" >
           <!-- Email -->
           <div class="form-group row">
             <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
             <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
+              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="email" name="email">
               <has-error :form="form" field="email"/>
             </div>
           </div>
@@ -29,9 +32,7 @@
                 {{ $t('remember_me') }}
               </checkbox>
 
-              <router-link :to="{ name: 'password.request' }" class="small ml-auto my-auto">
-                {{ $t('forgot_password') }}
-              </router-link>
+              
             </div>
           </div>
 

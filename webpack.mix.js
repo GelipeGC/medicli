@@ -9,7 +9,7 @@ mix
     .sass('resources/sass/app.scss', 'public/css')
 
 .sourceMaps()
-    .disableNotifications()
+    //   .disableNotifications()
 
 if (mix.inProduction()) {
     mix.version()

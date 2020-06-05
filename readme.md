@@ -1,6 +1,6 @@
 ## Project medicli
 
-[![Build Status](https://travis-ci.org/GelipeGC/medicli.svg?branch=master)](https://travis-ci.org/GelipeGC/medicli.svg?branch=master)    
+[![Build Status](https://travis-ci.org/GelipeGC/medicli.svg?branch=master)](https://travis-ci.org/GelipeGC/medicli)    
 
 ## Ho to use it
 
