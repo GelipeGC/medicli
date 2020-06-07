@@ -1,27 +1,28 @@
 sudo: required
 language: php
 dist: trusty
-
 php:
-  - 7.2
-
+- 7.2
 services:
-  - mysql
-
+- mysql
 before_script:
-  - cp .env.travis .env
-  - mysql -e 'create database medicli_tests;'
-  - composer self-update
-  - composer install --no-interaction
-  - php artisan key:generate
-  - php artisan migrate --seed
-
+- cp .env.travis .env
+- mysql -e 'create database medicli_tests;'
+- composer self-update
+- composer install --no-interaction
+- php artisan key:generate
+- php artisan migrate --seed
 script:
-  - vendor/bin/phpunit
-
+- vendor/bin/phpunit
 notifications:
   email:
     recipients:
-      - felipe-guzman.c@hotmail.com
+    - felipe-guzman.c@hotmail.com
     on-success: always
     on-failure: always
+deploy:
+  provider: heroku
+  api_key:
+    secure: a6KDxDTh/xMovIUBSv3c0vcasqFNTXuqH/sPmV6J5KEuE2SXkpudZwQAsofnsuzCqhegW72Xf33ts4fPJf5L8m2Icu5pyyD04XvCocAaK3oh3/A07vzZ3mmiq43o0oVX23jezWrkMdKXkpHCUX23r9k02NABygkoCkhZicenly0BEXXwXlprNzfUqVkq33PYv/uG98L3OUANBmxuQSAzN4h8zigZJHvC6T2boTG3vYmnODzCEMjxWBWwXqXy5pSNMri/uMe3kucbrYw0DuG/Hkxeq0L4ZMKCyWg03o/LgUj/GgxXTHTgygeNnFmhjBnf4k+mudZCUScaBQg61lnlODuYj1kho4YjIClIPWA7gQfuK177sJAaZs/VTVlziaZdilXUjqE/OyA+M3WakOjaX+eOtNFtHTeznCJkW2RjlHAuezap72h6flH012QlXG2vhUJsVlWzRkcqraRVaw3rU1F/EACiVGHb8iITrTum9q+Bs6a3Jf1KRUYIcM91Dzn5vWEwtVf74qutztwGU0YDi9+ROEkE787KyoWOwyVAFkkjQvF/1tl9QfTNd3eqV8h8A5PPg9PBLsuWuz5VbZPqh730S1RDgewnBPr2fxq39bm+CTR/8UGq1O4qo3He2OIvUMvfTrnP+XC7PpKjkaoaHbM7rY+9uQi4pQrt6pxLhhw=
+  app: medicli
+  on: master
