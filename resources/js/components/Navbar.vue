@@ -28,13 +28,14 @@
             <li class="nav-item">
                 <router-link class="nav-link nav-link-icon" :to="{ name: 'register' }">
                     <i class="ni ni-circle-08"></i>
-                    <span class="nav-link-inner--text">Register</span>
+                    <span class="nav-link-inner--text">{{$t('register')}}</span>
+                    
                 </router-link>
             </li>
             <li class="nav-item">
                 <router-link class="nav-link nav-link-icon" :to="{ name: 'login' }">
                     <i class="ni ni-key-25"></i>
-                    <span class="nav-link-inner--text">Login</span>
+                    <span class="nav-link-inner--text">{{$t('login')}}</span>
                 </router-link>
             </li>
             

@@ -1,7 +1,6 @@
 {
-    "/lang-en.js": "/lang-en.js?id=200e65dec84a19fd9984",
-    "/lang-es.js": "/lang-es.js?id=85e65c6e05cd96f189d1",
-    "/lang-zh-CN.js": "/lang-zh-CN.js?id=2614c6ee5c1630660340",
-    "/js/app.js": "/js/app.js?id=8b336df75f1d83e772d2",
-    "/css/app.css": "/css/app.css?id=20ff4334a80d6949ec23"
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/lang-en.js": "/lang-en.js",
+    "/lang-es.js": "/lang-es.js"
 }

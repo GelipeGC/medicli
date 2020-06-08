@@ -6,7 +6,7 @@
     "token_expired_alert_title": "!Sesión Expirada!",
     "token_expired_alert_text": "Por favor inicie sesión de nuevo para continuar.",
     "login": "Iniciar Sesión",
-    "register": "Registro",
+    "register": "Registrarse",
     "page_not_found": "Página No Encontrada",
     "go_home": "Ir a Inicio",
     "logout": "Cerrar Sesión",
@@ -31,6 +31,9 @@
     "new_password": "Nueva Contraseña",
     "login_with": "Iniciar Sesión con",
     "register_with": "Registro con",
+    "login_info": "Ingresa tus datos para iniciar sesión.",
+    "register_info": "Ingresa tus datos para registrarte.",
+    "crate_account": "¿Aún no te has registrado?",
     "sidebar": {
         "info": "Gestionar datos"
     }

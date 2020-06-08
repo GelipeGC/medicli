@@ -34,10 +34,11 @@
                         
                         
                         <div class="dropdown-divider"></div>
-                        <router-link to="/profile" class="dropdown-item">
+                        <a href="#" name="Logout" class="dropdown-item" @click.prevent="logout">
                             <i class="ni ni-user-run"></i>
-                            <span>Logout</span>
-                        </router-link>
+                          {{ $t('logout') }}
+                        </a>
+                       
                     </template>
                 </base-dropdown>
             </li>
@@ -62,6 +63,13 @@
       },
       toggleMenu() {
         this.showMenu = !this.showMenu;
+      },
+      async logout () {
+        // Log out the user.
+        await this.$store.dispatch('auth/logout')
+
+        // Redirect to login.
+        this.$router.push({ name: 'login' })
       }
     }
   };
