@@ -1,10 +1,7 @@
 <template>
-  <div class="card">
-    <div v-if="title" class="card-header">
-      {{ title }}
-    </div>
-
-    <div class="card-body">
+  <div class="card bg-secondary shadow border-0">
+    
+    <div class="card-body px-lg-5 py-lg-5">
       <slot/>
     </div>
   </div>

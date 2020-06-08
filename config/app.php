@@ -80,10 +80,9 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
     'locales' => [
         'en' => 'EN',
-        'zh-CN' => '中文',
         'es' => 'ES',
     ],
 

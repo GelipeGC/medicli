@@ -215,6 +215,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -344,12 +350,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c(
-      "div",
-      { staticClass: "col-lg-8 m-auto" },
-      [
-        _c("card", { attrs: { title: _vm.$t("register") } }, [
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "col-lg-6 col-md-8" }, [
+      _c("div", { staticClass: "card bg-secondary shadow border-0" }, [
+        _c("div", { staticClass: "card-body px-lg-5 py-lg-5" }, [
           _c(
             "form",
             {
@@ -364,37 +368,27 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "form-group row" }, [
-                _c(
-                  "label",
-                  { staticClass: "col-md-3 col-form-label text-md-right" },
-                  [_vm._v(_vm._s(_vm.$t("name")))]
-                ),
-                _vm._v(" "),
+              _c("div", { staticClass: "form-group mb-3" }, [
                 _c(
                   "div",
-                  { staticClass: "col-md-7" },
+                  { staticClass: "input-group input-group-alternative" },
                   [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.name,
-                          expression: "form.name"
-                        }
-                      ],
-                      staticClass: "form-control",
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("basic-input", {
                       class: { "is-invalid": _vm.form.errors.has("name") },
-                      attrs: { type: "text", name: "name" },
-                      domProps: { value: _vm.form.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "name", $event.target.value)
-                        }
+                      attrs: {
+                        label: _vm.$t("name"),
+                        id: "name",
+                        type: "text",
+                        name: "name"
+                      },
+                      model: {
+                        value: _vm.form.name,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "name", $$v)
+                        },
+                        expression: "form.name"
                       }
                     }),
                     _vm._v(" "),
@@ -406,37 +400,28 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group row" }, [
-                _c(
-                  "label",
-                  { staticClass: "col-md-3 col-form-label text-md-right" },
-                  [_vm._v(_vm._s(_vm.$t("email")))]
-                ),
-                _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
                 _c(
                   "div",
-                  { staticClass: "col-md-7" },
+                  { staticClass: "input-group input-group-alternative mb-3" },
                   [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.email,
-                          expression: "form.email"
-                        }
-                      ],
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("basic-input", {
                       staticClass: "form-control",
                       class: { "is-invalid": _vm.form.errors.has("email") },
-                      attrs: { type: "email", name: "email" },
-                      domProps: { value: _vm.form.email },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "email", $event.target.value)
-                        }
+                      attrs: {
+                        label: _vm.$t("email"),
+                        id: "email",
+                        type: "email",
+                        name: "email"
+                      },
+                      model: {
+                        value: _vm.form.email,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "email", $$v)
+                        },
+                        expression: "form.email"
                       }
                     }),
                     _vm._v(" "),
@@ -448,37 +433,27 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group row" }, [
-                _c(
-                  "label",
-                  { staticClass: "col-md-3 col-form-label text-md-right" },
-                  [_vm._v(_vm._s(_vm.$t("password")))]
-                ),
-                _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
                 _c(
                   "div",
-                  { staticClass: "col-md-7" },
+                  { staticClass: "input-group input-group-alternative" },
                   [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.password,
-                          expression: "form.password"
-                        }
-                      ],
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("basic-input", {
                       staticClass: "form-control",
                       class: { "is-invalid": _vm.form.errors.has("password") },
-                      attrs: { type: "password", name: "password" },
-                      domProps: { value: _vm.form.password },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "password", $event.target.value)
-                        }
+                      attrs: {
+                        label: _vm.$t("password"),
+                        type: "password",
+                        name: "password"
+                      },
+                      model: {
+                        value: _vm.form.password,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "password", $$v)
+                        },
+                        expression: "form.password"
                       }
                     }),
                     _vm._v(" "),
@@ -490,26 +465,14 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group row" }, [
-                _c(
-                  "label",
-                  { staticClass: "col-md-3 col-form-label text-md-right" },
-                  [_vm._v(_vm._s(_vm.$t("confirm_password")))]
-                ),
-                _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
                 _c(
                   "div",
-                  { staticClass: "col-md-7" },
+                  { staticClass: "input-group input-group-alternative" },
                   [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.password_confirmation,
-                          expression: "form.password_confirmation"
-                        }
-                      ],
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("basic-input", {
                       staticClass: "form-control",
                       class: {
                         "is-invalid": _vm.form.errors.has(
@@ -517,21 +480,16 @@ var render = function() {
                         )
                       },
                       attrs: {
+                        label: _vm.$t("confirm_password"),
                         type: "password",
                         name: "password_confirmation"
                       },
-                      domProps: { value: _vm.form.password_confirmation },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form,
-                            "password_confirmation",
-                            $event.target.value
-                          )
-                        }
+                      model: {
+                        value: _vm.form.password_confirmation,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "password_confirmation", $$v)
+                        },
+                        expression: "form.password_confirmation"
                       }
                     }),
                     _vm._v(" "),
@@ -550,9 +508,9 @@ var render = function() {
                   [
                     _c("v-button", { attrs: { loading: _vm.form.busy } }, [
                       _vm._v(
-                        "\n              " +
+                        "\n                                " +
                           _vm._s(_vm.$t("register")) +
-                          "\n            "
+                          "\n                            "
                       )
                     ]),
                     _vm._v(" "),
@@ -564,12 +522,52 @@ var render = function() {
             ]
           )
         ])
-      ],
-      1
-    )
+      ])
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "ni ni-hat-3" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "ni ni-email-83" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "ni ni-lock-circle-open" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "ni ni-lock-circle-open" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
