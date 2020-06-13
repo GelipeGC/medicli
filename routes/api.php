@@ -13,19 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-
-Route::group(['middleware' => 'auth:api'], function () {
-    Route::post('logout', 'Auth\LoginController@logout');
-
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-    Route::patch('settings/profile', 'Settings\ProfileController@update');
-    Route::patch('settings/password', 'Settings\PasswordController@update');
-    
-});
-
-
 Route::group(['middleware' => 'guest:api'], function () {
     Route::post('login', 'Auth\LoginController@login');
     Route::post('register', 'Auth\RegisterController@register');
@@ -35,3 +22,32 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('oauth/{driver}', 'Auth\OAuthController@redirectToProvider');
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
 });
+
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('logout', 'Auth\LoginController@logout');
+
+    Route::get('/user', 'Settings\ProfileController@fetchUser');
+    Route::patch('settings/profile', 'Settings\ProfileController@update');
+    Route::patch('settings/password', 'Settings\PasswordController@update');
+
+    //Permissions
+    Route::get('/permissions', 'RoleManagerController@permissionsIndex')
+        ->name('permissions.index')
+        ->middleware('permission:View All Permissions');
+
+    Route::get('/roles', 'RoleManagerController@rolesIndex')
+        ->name('roles.index')
+        ->middleware('permission:View All Roles');
+
+    Route::post('/roles/{role}/assign/{user}', 'RoleManagerController@rolesAddUser')
+        ->name('roles.addUser')
+        ->middleware('permission:Assign Role');
+
+    Route::post('/roles/{role}/unassign/{user}', 'RoleManagerController@rolesRemoveUser')
+        ->name('roles.removeUser')
+        ->middleware('permission:Unassign Role');
+    
+});
+
+
+
