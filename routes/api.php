@@ -48,6 +48,15 @@ Route::group(['middleware' => 'auth:api'], function () {
         ->middleware('permission:Unassign Role');
     
 });
+Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function(){
+    Route::group(['prefix' => 'users'], function() {
+        Route::get('/', 'UsersController@index')->name('users');
+        Route::post('/store', 'UsersController@store')->name('users.store');
+        Route::put('/{id}/update', 'UsersController@update')->name('users.update');
+
+    });
+});
+
 
 
 
