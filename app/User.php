@@ -29,6 +29,20 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    /**
+     * @return UserQuery
+     */
+    public static function query()
+    {
+        return parent::query();
+    }
+
+    public function newEloquentBuilder($query)
+    {
+        return new UserQuery($query);
+    }
     
     /**
      * Set permissions guard to API by default
@@ -39,6 +53,7 @@ class User extends Authenticatable implements JWTSubject
     /**
      * @return int
      */
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
