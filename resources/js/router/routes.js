@@ -19,7 +19,12 @@ const SettingsProfile = () =>
     import ('~/pages/settings/profile').then(m => m.default || m)
 const SettingsPassword = () =>
     import ('~/pages/settings/password').then(m => m.default || m)
-
+const Specialties = () =>
+    import ('~/pages/specialties/index').then(m => m.default || m)
+const CreateSpeciality = () =>
+    import ('~/pages/specialties/create').then(m => m.default || m)
+const EditSpeciality = () =>
+    import ('~/pages/specialties/edit').then(m => m.default || m)
 export default [
     { path: '/', name: 'welcome', component: Welcome },
 
@@ -38,6 +43,29 @@ export default [
             { path: 'password', name: 'settings.password', component: SettingsPassword }
         ]
     },
-
+    {
+        path: '/specialties',
+        name: 'specialties',
+        component: Specialties,
+        meta: {
+            title: 'Listado de especialidades'
+        }
+    },
+    {
+        path: '/specialties/create',
+        name: 'specialties.create',
+        component: CreateSpeciality,
+        meta: {
+            title: 'Crear especialidad'
+        }
+    },
+    {
+        path: '/specialties/:id/edit',
+        name: 'specialties.edit',
+        component: EditSpeciality,
+        meta: {
+            title: 'Editar especialidad'
+        }
+    },
     { path: '*', component: NotFound }
 ]

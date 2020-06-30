@@ -53,8 +53,16 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function(){
         Route::get('/', 'UsersController@index')->name('users');
         Route::post('/store', 'UsersController@store')->name('users.store');
         Route::put('/{id}/update', 'UsersController@update')->name('users.update');
-
     });
+    //specialties
+    Route::group(['prefix' => 'specialties'], function() {
+        Route::get('/', 'SpecialtyController@index');
+        Route::get('/{specialty}/edit', 'SpecialtyController@edit');
+        Route::put('/{specialty}/update', 'SpecialtyController@update')->name('specialties.update');
+        Route::post('/store', 'SpecialtyController@store')->name('specialties.store');
+        Route::delete('/{id}/delete', 'SpecialtyController@destroy')->name('specialties.delete');
+
+    }); 
 });
 
 

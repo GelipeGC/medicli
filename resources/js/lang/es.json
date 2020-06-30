@@ -34,7 +34,40 @@
     "login_info": "Ingresa tus datos para iniciar sesión.",
     "register_info": "Ingresa tus datos para registrarte.",
     "crate_account": "¿Aún no te has registrado?",
+    "vuetable_record_show": "Mostrando",
+    "vuetable_record_to": "a",
+    "vuetable_record_of": "de",
+    "vuetable_items": "registros",
+    "not_data_paginate": "0 registros encontrados",
+    "not_data_table": "No se encontraron datos",
+    "not_options": "No se encontraron resultados",
     "sidebar": {
         "info": "Gestionar datos"
+    },
+    "specialties": {
+        "title": "Especialidades",
+        "create": "Nueva especialidad",
+        "save": "Guardar",
+        "edit": "Editar especialidad",
+        "delete": "Eliminar especialidad",
+        "cancel": "Cancelar y volver",
+        "name": "Nombre de la especialidad",
+        "description": "Descripción"
+    },
+    "alert_delete": {
+        "confirm": {
+            "title": "Eliminar",
+            "text": "¿Esta seguro de eliminar este registro?",
+            "confirmButtonText": "Sí",
+            "cancelButtonText": "No"
+        },
+        "cancel": {
+            "title": "Cancelado",
+            "text": "Esta acción ha sido cancelada por el usuario"
+        },
+        "deleted": {
+            "title": "Eliminado",
+            "text": "El registro ha sido eliminado con éxito"
+        }
     }
 }
