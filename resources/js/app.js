@@ -6,6 +6,7 @@ import App from '~/components/App'
 import ArgonDashboard from 'vue-argon-dashboard/src/plugins/argon-dashboard'
 
 Vue.use(ArgonDashboard);
+require('./bootstrap');
 
 import '~/plugins'
 import '~/components'

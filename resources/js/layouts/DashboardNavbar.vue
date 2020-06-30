@@ -1,7 +1,9 @@
 <template>
-    <base-nav class="navbar-top navbar-dark bg-default"
+  <div>
+    <cutom-nav class="navbar-top navbar-dark bg-default"
               id="navbar-main"
               :show-toggle-button="false"
+              :title="'Listado'"
               expand>
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <div class="form-group mb-0">
@@ -43,7 +45,10 @@
                 </base-dropdown>
             </li>
         </ul>
-    </base-nav>
+    </cutom-nav>
+    <base-header type="gray-200 " class="pb-6 pb-8 pt-5 pt-md-8">
+    </base-header>
+  </div>
 </template>
 <script>
   export default {
