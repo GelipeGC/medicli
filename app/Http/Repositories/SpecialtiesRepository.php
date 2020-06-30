@@ -30,8 +30,8 @@ class SpecialtiesRepository
     public function all($request)
     {
         return $specialty = $this->model::query()
-                    ->orderBy('created_at')
-                    ->paginate(static::ITEM_PER_PAGE);
+                        ->orderByDesc('created_at')
+                        ->paginate(static::ITEM_PER_PAGE);
     }
 
     public function create(array $data)
