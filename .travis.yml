@@ -26,3 +26,6 @@ deploy:
     secure: HKoOPKoCiAhYOwKT1ncAsBTo0nvFQxI/H/BSuJQ3UfEZYhtyxRAGGyX//8m+c4IRCdNYvMJ/aAXwLX9vrHB1A0pQMLgT0L6lzI9da5JoGc9dJwFMaPkyRZUfcfrYhkMLhBxuUvnyNRaFCTWd/Ev6La9GGyOp0R7bjnlqnonhplmzZrxAEK5IpX6TotdsGGrjtOoXccYTIFSMvf4REwxOpo0ossp0CTc6uITiJxsF9x+jpRNfHv/g1WK4TtrY85w5do8Ih9eKngyOB3uOzM6hC3/6O/AJB4/ZCPDdlZqJSYjnAwzao+cKxMTsOeAJPYk3y3O0hMSpim6NOop91+XXRgzBKSv3gUvTjT/npDnFujvOLvuRlCYLtJm/RBT1W0/tu5s8Q3XUXoa5sYbQh8QK+F4a9Y3J4krdIEbgGIJVML+hrGD8dblmbPaG6JK8Z680FxyH/TSkQ6ZlR/fhWY4D3c30gCxqXb+vmZuVLTkyOFBFCwGBAgY0TFBeS+00pLbj2JG6W3///U9LltkDtm4Nt9ePQYgaKDAgF80jC4uPV/322hF+nGeBHFa81XUChVyrDAaL36LJ6Z6tnkAFKT3NE+6ReYg0SUQXLqKc3Jk0BskJyRcte1phwssKX++7VrxOxOzqT2amhEqkuf6QghW9sh84WwMRs+gQf/RD2Idta3k=
   app: medicli
   on: master
+  run:
+    - "php artisan migrate"
+    - "php artisan db:seed"
