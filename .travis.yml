@@ -27,5 +27,5 @@ deploy:
   app: medicli
   on: master
   run:
-    - "php artisan migrate"
-    - "php artisan db:seed"
+    - "heroku run php artisan migrate"
+    - "heroku run php artisan db:seed"
