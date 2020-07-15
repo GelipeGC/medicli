@@ -114,4 +114,59 @@ class ListSpecialtiesTest extends TestCase
                     ]
                 ]);
     }
+    /** @test */
+    function specialties_are_ordered_by_name()
+    {
+         factory(Specialty::class)->create(['name' => 'Anestesiología']);
+         factory(Specialty::class)->create(['name' => 'Odontologia']);
+         factory(Specialty::class)->create(['name' => 'Medicina general']);
+        $this->actingAs($this->user)
+            ->get('/api/specialties?sort=name|asc')
+            ->assertJson([
+                'data' => [
+                    ['name' => 'Anestesiología'],
+                    ['name' => 'Medicina general'],
+                    ['name' => 'Odontologia']
+                ]
+            ]);
+
+        $this->actingAs($this->user)
+            ->get('/api/specialties?sort=name|desc')
+            ->assertJson([
+                'data' => [
+                    ['name' => 'Odontologia'],
+                    ['name' => 'Medicina general'],
+                    ['name' => 'Anestesiología']
+                    
+                ]
+            ]);
+            
+    }
+    /** @test */
+    function invalid_order_query_date_is_ignorad_and_default_order_is_used_instead()
+    {
+        factory(Specialty::class)->create(['name' => 'Anestesiología', 'created_at' => now()->subDays(1)]);
+        factory(Specialty::class)->create(['name' => 'Odontologia', 'created_at' => now()->subDays(3)]);
+        factory(Specialty::class)->create(['name' => 'Medicina general', 'created_at' => now()->subDays(2)]);
+        
+        $this->actingAs($this->user)
+            ->get('/api/specialties?sort=id')
+            ->assertJson([
+                'data' => [
+                    ['name' => 'Anestesiología'],
+                    ['name' => 'Medicina general'],
+                    ['name' => 'Odontologia']
+                ]
+            ]);
+        $this->actingAs($this->user)
+            ->get('/api/specialties?sort=invalid|desc')
+            ->assertJson([
+                'data' => [
+                    ['name' => 'Anestesiología'],
+                    ['name' => 'Medicina general'],
+                    ['name' => 'Odontologia']
+                ]
+            ]);
+        
+    }
 }

@@ -45,6 +45,8 @@
                                             class: 'tooltip-custom'
                                         }">
                                     <fa icon="pencil-alt" class="fa-lg"/>
+                                    <i class="fa fa-sort" aria-hidden="true"></i>
+
                                 </span>
                             </router-link>
                             <a class="action-icon ml-2"   
