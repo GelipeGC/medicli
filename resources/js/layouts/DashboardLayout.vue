@@ -17,7 +17,7 @@
           }"
         />
         <sidebar-item :link="{name: 'Especialidades', icon: 'ni ni-planet text-blue', path: '/specialties'}"/>
-        <sidebar-item :link="{name: 'Médicos', icon: 'ni ni-single-02 text-red', path: '/icons'}"/>
+        <sidebar-item :link="{name: 'Médicos', icon: 'ni ni-single-02 text-red', path: '/doctors'}"/>
         <sidebar-item :link="{name: 'Pacientes', icon: 'ni ni-satisfied text-info', path: '/icons'}"/>
         <sidebar-item :link="{name: 'Cerrar sesión', icon: 'ni ni-planet text-blue', path: '/icons'}"/>
 

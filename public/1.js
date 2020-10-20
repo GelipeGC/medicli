@@ -538,12 +538,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this.$store.dispatch('auth/fetchUser');
 
               case 7:
-                // Redirect home.
+                _this.form.reset(); // Redirect home.
+
+
                 _this.$router.push({
                   name: 'home'
                 });
 
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }
