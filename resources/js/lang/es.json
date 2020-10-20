@@ -54,6 +54,19 @@
         "name": "Nombre de la especialidad",
         "description": "Descripción"
     },
+    "doctors": {
+        "title": "Médicos",
+        "create": "Nuevo médico",
+        "save": "Guardar",
+        "edit": "Editar médico",
+        "delete": "Eliminar médico",
+        "cancel": "Cancelar y volver",
+        "name": "Nombre del médico",
+        "email": "Correo eléctronico",
+        "cedula": "Cédula profesional",
+        "phone": "Télefono",
+        "address": "Dirección"
+    },
     "alert_delete": {
         "confirm": {
             "title": "Eliminar",

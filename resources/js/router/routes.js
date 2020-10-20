@@ -25,6 +25,10 @@ const CreateSpeciality = () =>
     import ('~/pages/specialties/create').then(m => m.default || m)
 const EditSpeciality = () =>
     import ('~/pages/specialties/edit').then(m => m.default || m)
+const Doctors = () =>
+    import ('~/pages/doctors/index').then(m => m.default || m)
+const CreateDoctor = () =>
+    import ('~/pages/doctors/create').then(m => m.default || m)
 export default [
     { path: '/', name: 'welcome', component: Welcome },
 
@@ -65,6 +69,22 @@ export default [
         component: EditSpeciality,
         meta: {
             title: 'Editar especialidad'
+        }
+    },
+    {
+        path: '/doctors',
+        name: 'doctors',
+        component: Doctors,
+        meta: {
+            title: 'Listado de médicos'
+        }
+    },
+    {
+        path: '/doctors/create',
+        name: 'doctors.create',
+        component: CreateDoctor,
+        meta: {
+            title: 'Crear médico'
         }
     },
     { path: '*', component: NotFound }
