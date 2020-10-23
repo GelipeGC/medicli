@@ -17,7 +17,7 @@ class CreateDoctorTest extends TestCase
        'address' => 'Callejon salsipuedes',
        'phone' => '32-3322-3232'
    ];
-   public function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
         $this->role = factory(Role::class)->create(['name' => 'Super Admin', 'guard_name' => 'api']);

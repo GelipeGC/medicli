@@ -20,6 +20,20 @@ class DoctorsRepository
     {
         $this->model = $user;
     }
+    /**
+     * Display a listing of the resource and apply filters by users.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function all($request)
+    {
+        return $this->model::query()
+                            ->select(['id','name','phone','email','created_at'])
+                            ->withRole()
+                            ->applyFilters()
+                            ->orderByDesc('created_at')
+                            ->paginate(10);
+    }
     public function create(array $data)
     {
         try {

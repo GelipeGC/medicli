@@ -68,12 +68,12 @@ class UserRepository implements UserInterface
 
                 $this->sendMailWelcome($user, $password);
 
-                return $this->sendSuccessfullyResponse('created', trans('users.create'), 201, $user);
+                return $this->sendSuccessfullyResponse('success', trans('users.create'), 201, $user);
             }
-            return $this->sendFailedResponse('created', trans('users.failed'), 500);
+            return $this->sendFailedResponse('success', trans('users.failed'), 500);
 
         } catch (QueryException $e) {
-            return $this->sendFailedResponse('created', $e->getMessage(), 500);
+            return $this->sendFailedResponse('success', $e->getMessage(), 500);
 
         }
 
@@ -108,12 +108,12 @@ class UserRepository implements UserInterface
             $user->address = $data['address'];
             if ($user->update()) {
 
-                return $this->sendSuccessfullyResponse('updated',trans('users.update'),201,$user);
+                return $this->sendSuccessfullyResponse('success',trans('users.update'),201,$user);
             }
-            return $this->sendFailedResponse('updated',trans('users.failed'), 500);
+            return $this->sendFailedResponse('success',trans('users.failed'), 500);
             
         } catch (QueryException $e) {
-            return $this->sendFailedResponse('updated', $e->getMessage(), 500);
+            return $this->sendFailedResponse('success', $e->getMessage(), 500);
 
         }
     }
@@ -129,14 +129,14 @@ class UserRepository implements UserInterface
         $user = $this->model::findOrFail($id);
 
         if ($user->status == $this->model::ACTIVE) {
-            return $this->sendFailedResponse('deleted', trans('users.failed'), 403);
+            return $this->sendFailedResponse('success', trans('users.failed'), 403);
         }
         
 
         if ($user->delete()) {
-            return $this->sendSuccessfullyResponse('deleted', trans('users.delete'), 200);
+            return $this->sendSuccessfullyResponse('success', trans('users.delete'), 200);
         }
-        return $this->sendFailedResponse('deleted', trans('users.failed'), 500);
+        return $this->sendFailedResponse('success', trans('users.failed'), 500);
     }
     /**
      * Send message a new user to welcome
@@ -163,9 +163,9 @@ class UserRepository implements UserInterface
         $user->status = $data['status'];
 
         if ($user->save()) {
-            return $this->sendSuccessfullyResponse('updated',trans('users.status'),201);
+            return $this->sendSuccessfullyResponse('success',trans('users.status'),201);
         }
-        return $this->sendFailedResponse('updated',trans('users.failed'), 500);
+        return $this->sendFailedResponse('success',trans('users.failed'), 500);
 
     }  
 

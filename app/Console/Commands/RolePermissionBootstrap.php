@@ -47,7 +47,8 @@ class RolePermissionBootstrap extends Command
             'Assign Role',
             'Unassign Role',
             'View All Permissions',
-            'View All Roles'
+            'View All Roles',
+            'Create Role'
         ];
 
         $this->line('------------- Setting Up Roles:');

@@ -3,10 +3,10 @@
 namespace App;
 
 use App\Models\Area;
-use App\Models\Role;
 use App\QueryFilter;
 use App\Models\Profession;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
 
 class UserQuery extends QueryBuilder
@@ -44,7 +44,7 @@ class UserQuery extends QueryBuilder
 
         return $this;
     }
-    public function customUsersIf($value)
+    public function onlyDoctors($value)
     {
         if ($value) {
             $this->onlyParents();

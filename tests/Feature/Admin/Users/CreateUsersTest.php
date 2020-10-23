@@ -39,7 +39,7 @@ class CreateUsersTest extends TestCase
                 ]))
                 ->assertSuccessful()
                 ->assertJson([
-                    'created' => true,
+                    'success' => true,
                     'message' => 'Usuario creado con éxito.'
                 ]);
         $user = User::findByEmail('felipe-guzman.c@hotmail.com');
