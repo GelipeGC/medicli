@@ -4,7 +4,7 @@ namespace Tests\Feature\Admin\Users;
 
 use App\User;
 use Tests\TestCase;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -39,7 +39,7 @@ class CreateUsersTest extends TestCase
                 ]))
                 ->assertSuccessful()
                 ->assertJson([
-                    'created' => true,
+                    'success' => true,
                     'message' => 'Usuario creado con éxito.'
                 ]);
         $user = User::findByEmail('felipe-guzman.c@hotmail.com');

@@ -4,7 +4,7 @@ namespace Tests\Feature\Admin\Doctors;
 
 use App\User;
 use Tests\TestCase;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -25,8 +25,29 @@ class ListDoctorsTest extends TestCase
     function it_shows_the_doctors_lists()
     {
         $this->handleValidationExceptions();
-
         $this->markAsRisky();
+
+        /* $doctorOne = factory(User::class)->create([
+            'name' => 'Dr. Felipe',
+            'created_at' => now()->subDays(2),
+        ]);
+
+        $doctorTwo = factory(User::class)->create([
+            'name' => 'Dra. Delia',
+            'created_at' => now()->subDays(1)
+        ]);
+
+        $test = $this->actingAs($this->user)
+                ->get('/api/doctors')
+                ->assertSuccessful()
+                ->assertJson([
+                    'data' => [
+                        ['name' => 'Dra. Delia'],
+                        ['name' => 'Dr. Felipe']
+
+                    ]
+                ]);
+        $test->dump(); */
     }
     
 }

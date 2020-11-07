@@ -54,6 +54,14 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function(){
         Route::post('/store', 'UsersController@store')->name('users.store');
         Route::put('/{id}/update', 'UsersController@update')->name('users.update');
     });
+    //users
+    Route::group(['prefix' => 'roles'], function() {
+        Route::get('/', 'RolesController@index')->name('roles');
+        Route::post('/store', 'RolesController@store')->name('roles.store');
+        Route::put('/{id}/update', 'RolesController@update')->name('roles.update');
+        Route::delete('/{id}/delete', 'RolesController@destroy')->name('roles.delete');
+
+    });
     //specialties
     Route::group(['prefix' => 'specialties'], function() {
         Route::get('/', 'SpecialtyController@index');

@@ -42,7 +42,7 @@ class UpdateUsersTest extends TestCase
             ]))
             ->assertSuccessful()
             ->assertJson([
-                'updated' => true,
+                'success' => true,
                 'message' => 'Usuario actualizado con éxito.'
             ]);
         $this->assertDatabaseHas('users', [

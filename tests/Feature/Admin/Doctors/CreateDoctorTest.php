@@ -4,7 +4,7 @@ namespace Tests\Feature\Admin\Doctors;
 
 use App\User;
 use Tests\TestCase;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -17,7 +17,7 @@ class CreateDoctorTest extends TestCase
        'address' => 'Callejon salsipuedes',
        'phone' => '32-3322-3232'
    ];
-   public function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
         $this->role = factory(Role::class)->create(['name' => 'Super Admin', 'guard_name' => 'api']);
