@@ -4,7 +4,7 @@ namespace Tests\Feature\Admin\Doctors;
 
 use App\User;
 use Tests\TestCase;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

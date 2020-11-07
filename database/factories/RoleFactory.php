@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Models\Role;
 use Faker\Generator as Faker;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
 $factory->define(Role::class, function (Faker $faker) {

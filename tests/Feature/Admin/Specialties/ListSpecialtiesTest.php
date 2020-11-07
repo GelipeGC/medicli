@@ -5,7 +5,7 @@ namespace Tests\Feature\Admin\Specialties;
 use App\User;
 use Tests\TestCase;
 use App\Models\Specialty;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

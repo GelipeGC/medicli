@@ -4,7 +4,7 @@ namespace Tests\Feature\Admin\Roles;
 
 use App\User;
 use Tests\TestCase;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use Illuminate\Support\Facades\Artisan;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -19,10 +19,8 @@ class CreateRoleTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        //factory(Permission::class)->create();
 
         $this->role = factory(Role::class)->create();
-        //$this->role->givePermissionTo('Create Role');
 
         $this->user = factory(User::class)->create();
         
