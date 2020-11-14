@@ -14,7 +14,7 @@ class SearchUsersTest extends TestCase
      public function setUp(): void
      {
          parent::setUp();
-         $this->user = factory(User::class)->create([
+         $this->user = User::factory()->create([
             'created_at' => now()->subWeek(2)
          ]);
  
@@ -22,11 +22,11 @@ class SearchUsersTest extends TestCase
    /** @test */
    function search_users_by_name()
    {
-       factory(User::class)->create([
+       User::factory()->create([
            'name' => 'Felipe',
        ]);
 
-       factory(User::class)->create([
+       User::factory()->create([
            'name' => 'Deli',
        ]);
        $this->actingAs($this->user)
@@ -46,11 +46,11 @@ class SearchUsersTest extends TestCase
    /** @test */
    function show_results_with_a_partial_search_by_name()
    {
-       factory(User::class)->create([
+       User::factory()->create([
            'name' => 'Felipe',
        ]);
 
-       factory(User::class)->create([
+       User::factory()->create([
            'name' => 'Deli',
        ]);
        $this->actingAs($this->user)
@@ -71,11 +71,11 @@ class SearchUsersTest extends TestCase
     /** @test */
    function search_users_by_email()
    {
-       factory(User::class)->create([
+       User::factory()->create([
            'email' => 'felipe@example.com',
        ]);
 
-       factory(User::class)->create([
+       User::factory()->create([
            'email' => 'deli@example.mx',
        ]);
        $this->actingAs($this->user)
@@ -96,11 +96,11 @@ class SearchUsersTest extends TestCase
     /** @test */
     function show_results_with_a_partial_sear_by_email()
     {
-        factory(User::class)->create([
+        User::factory()->create([
             'email' => 'felipe@example.com',
         ]);
  
-        factory(User::class)->create([
+        User::factory()->create([
             'email' => 'deli@example.mx',
         ]);
         $this->actingAs($this->user)

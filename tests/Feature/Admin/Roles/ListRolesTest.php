@@ -15,11 +15,11 @@ class ListRolesTest extends TestCase
     {
         parent::setUp();
 
-        $this->role = factory(Role::class)->create([
+        $this->role = Role::factory()->create([
             'created_at' => now()->subWeek(2),
         ]);
 
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         
         $this->user->assignRole($this->role);
     }
@@ -28,11 +28,11 @@ class ListRolesTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        factory(Role::class)->create([
+        Role::factory()->create([
             'name' => 'Administrador',
             'created_at' => now()->subDays(2)
         ]);
-        factory(Role::class)->create([
+        Role::factory()->create([
             'name' => 'Gerente',
             'created_at' => now()->subDays(1)
         ]);
@@ -51,34 +51,34 @@ class ListRolesTest extends TestCase
     /** @test */
     function it_paginates_the_specialties()
     {
-         factory(Role::class)->create([
+         Role::factory()->create([
              'name' => 'Tercer role',
              'created_at' => now()->subDays(4),
          ]);
  
-         factory(Role::class)->times(7)->create([
+         Role::factory()->times(7)->create([
              'created_at' => now()->subDays(5),
          ]);
  
-         factory(Role::class)->create([
+         Role::factory()->create([
              'name' => 'Decimoséptimo role',
              'created_at' => now()->subDays(2),
 
          ]);
  
-         factory(Role::class)->create([
+         Role::factory()->create([
              'name' => 'Segundo role',
              'created_at' => now()->subDays(6),
 
          ]);
  
-         factory(Role::class)->create([
+         Role::factory()->create([
              'name' => 'Primer role',
              'created_at' => now()->subWeek(),
 
          ]);
  
-         factory(Role::class)->create([
+         Role::factory()->create([
              'name' => 'Decimosexto role',
              'created_at' => now()->subDays(3),
 
@@ -117,9 +117,9 @@ class ListRolesTest extends TestCase
     /** @test */
     function the_roles_are_ordered_by_name()
     {
-         factory(Role::class)->create(['name' => 'Autor']);
-         factory(Role::class)->create(['name' => 'Editor']);
-         factory(Role::class)->create(['name' => 'Manager']);
+         Role::factory()->create(['name' => 'Autor']);
+         Role::factory()->create(['name' => 'Editor']);
+         Role::factory()->create(['name' => 'Manager']);
         $this->actingAs($this->user)
             ->get('/api/roles?sort=name|asc')
             ->assertJson([
@@ -146,9 +146,9 @@ class ListRolesTest extends TestCase
     /** @test */
     function invalid_order_query_is_ignorad_and_default_order_is_used_instead()
     {
-        factory(Role::class)->create(['name' => 'Admin', 'created_at' => now()->subDays(1)]);
-        factory(Role::class)->create(['name' => 'Editor', 'created_at' => now()->subDays(3)]);
-        factory(Role::class)->create(['name' => 'Manager', 'created_at' => now()->subDays(2)]);
+        Role::factory()->create(['name' => 'Admin', 'created_at' => now()->subDays(1)]);
+        Role::factory()->create(['name' => 'Editor', 'created_at' => now()->subDays(3)]);
+        Role::factory()->create(['name' => 'Manager', 'created_at' => now()->subDays(2)]);
         
         $this->actingAs($this->user)
             ->get('/api/roles?sort=id')

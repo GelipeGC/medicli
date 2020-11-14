@@ -20,9 +20,9 @@ class CreateDoctorTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->role = factory(Role::class)->create(['name' => 'Super Admin', 'guard_name' => 'api']);
-        $this->user = factory(User::class)->create();
-        
+        $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
+        $this->user = User::factory()->create();
+            
         $this->user->assignRole($this->role);
     }
     /** @test */
@@ -130,7 +130,7 @@ class CreateDoctorTest extends TestCase
     function the_doctor_email_must_be_unique()
     {
         $this->handleValidationExceptions();
-        factory(User::class)->create([
+        User::factory()->create([
             'email' => 'felipe-guzman.c@hotmail.com'
         ]);
         $this->actingAs($this->user)

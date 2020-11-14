@@ -25,7 +25,7 @@ class UpdateUsersTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
 
     }
     /** @test */
@@ -33,7 +33,7 @@ class UpdateUsersTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAs($this->user)
             ->putJson("/api/users/{$user->id}/update", $this->withData([
@@ -111,7 +111,7 @@ class UpdateUsersTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        factory(User::class)->create([
+        User::factory()->create([
             'email' => 'felipe-guzman.c@hotmail.com'
         ]);
 

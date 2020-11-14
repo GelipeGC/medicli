@@ -16,8 +16,8 @@ class ListDoctorsTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->role = factory(Role::class)->create(['name' => 'Doctor', 'guard_name' => 'api']);
-        $this->user = factory(User::class)->create();
+        $this->role = Role::factory()->create(['name' => 'Doctor', 'guard_name' => 'api']);
+        $this->user = User::factory()->create();
         
         $this->user->assignRole($this->role);
     }
@@ -27,12 +27,12 @@ class ListDoctorsTest extends TestCase
         $this->handleValidationExceptions();
         $this->markAsRisky();
 
-        /* $doctorOne = factory(User::class)->create([
+        /* $doctorOne = User::factory()->create([
             'name' => 'Dr. Felipe',
             'created_at' => now()->subDays(2),
         ]);
 
-        $doctorTwo = factory(User::class)->create([
+        $doctorTwo = User::factory()->create([
             'name' => 'Dra. Delia',
             'created_at' => now()->subDays(1)
         ]);

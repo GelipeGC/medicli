@@ -19,8 +19,8 @@ class DeleteRolesTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->role = factory(Role::class)->create(['name' => 'Super Admin', 'guard_name' => 'api']);
-        $this->user = factory(User::class)->create();
+        $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
+        $this->user = User::factory()->create();
         
         $this->user->assignRole($this->role);
     }
@@ -29,7 +29,7 @@ class DeleteRolesTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        $role = factory(Role::class)->create([
+        $role = Role::factory()->create([
             'name' => 'Manager'
         ]);
 
@@ -49,7 +49,7 @@ class DeleteRolesTest extends TestCase
     function the_id_role_exists_in_database()
     {
         $this->handleValidationExceptions();
-        factory(Role::class)->create();
+        Role::factory()->create();
 
         $this->actingAs($this->user)
             ->deleteJson("/api/roles/999/delete", $this->withData())
@@ -64,10 +64,10 @@ class DeleteRolesTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        $admin = factory(Role::class)->create();
-        $userOne = factory(User::class)->create();
+        $admin = Role::factory()->create();
+        $userOne = User::factory()->create();
         $userOne->assignRole($admin);
-        $userTwo = factory(User::class)->create();
+        $userTwo = User::factory()->create();
         $userTwo->assignRole($admin);
 
         $this->actingAs($this->user)
