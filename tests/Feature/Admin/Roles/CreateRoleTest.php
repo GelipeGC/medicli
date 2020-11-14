@@ -20,9 +20,9 @@ class CreateRoleTest extends TestCase
     {
         parent::setUp();
 
-        $this->role = factory(Role::class)->create();
+        $this->role = Role::factory()->create();
 
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         
         $this->user->assignRole($this->role);
     }
@@ -99,7 +99,7 @@ class CreateRoleTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        factory(Role::class)->create(['name' => 'users_manage', 'guard_name' => 'api']);
+        Role::factory()->create(['name' => 'users_manage', 'guard_name' => 'api']);
 
         $this->actingAs($this->user)
             ->postJson('/api/roles/store', $this->withData([
@@ -113,10 +113,10 @@ class CreateRoleTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        $role = factory(Role::class)->create(['name' => 'user_auditor', 'guard_name' => 'api']);
+        $role = Role::factory()->create(['name' => 'user_auditor', 'guard_name' => 'api']);
         $role->revokePermissionTo('Create Role');
 
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         
         $user->assignRole($role);
         

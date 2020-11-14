@@ -19,8 +19,8 @@ class UpdateRolesTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->role = factory(Role::class)->create(['name' => 'Super Admin', 'guard_name' => 'api']);
-        $this->user = factory(User::class)->create();
+        $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
+        $this->user = User::factory()->create();
         
         $this->user->assignRole($this->role);
     }
@@ -29,7 +29,7 @@ class UpdateRolesTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        $role = factory(Role::class)->create([
+        $role = Role::factory()->create([
             'name' => 'Editor'
         ]);
 
@@ -52,7 +52,7 @@ class UpdateRolesTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        $role = factory(Role::class)->create([
+        $role = Role::factory()->create([
             'name' => 'Manager-test'
         ]);
 
@@ -73,7 +73,7 @@ class UpdateRolesTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        $role = factory(Role::class)->create([
+        $role = Role::factory()->create([
             'name' => 'Manager-user'
         ]);
 
@@ -94,7 +94,7 @@ class UpdateRolesTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        $role = factory(Role::class)->create([
+        $role = Role::factory()->create([
             'name' => 'Manager-user'
         ]);
 
@@ -114,7 +114,7 @@ class UpdateRolesTest extends TestCase
     function the_id_role_exists_in_database()
     {
         $this->handleValidationExceptions();
-        factory(Role::class)->create();
+        Role::factory()->create();
 
         $this->actingAs($this->user)
             ->putJson("/api/roles/999/update", $this->withData())

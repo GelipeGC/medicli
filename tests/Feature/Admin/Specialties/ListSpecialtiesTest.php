@@ -17,8 +17,8 @@ class ListSpecialtiesTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->role = factory(Role::class)->create(['name' => 'Super Admin', 'guard_name' => 'api']);
-        $this->user = factory(User::class)->create();
+        $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
+        $this->user = User::factory()->create();
         
         $this->user->assignRole($this->role);
     }
@@ -28,11 +28,11 @@ class ListSpecialtiesTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        factory(Specialty::class)->create([
+        Specialty::factory()->create([
             'name' => 'Anestesiología',
             'created_at' => now()->subDays(2),
         ]);
-        factory(Specialty::class)->create([
+        Specialty::factory()->create([
             'name' => 'Nutriología',
             'created_at' => now()->subDays(1),
         ]);
@@ -51,34 +51,34 @@ class ListSpecialtiesTest extends TestCase
     /** @test */
     function it_paginates_the_specialties()
     {
-         factory(Specialty::class)->create([
+         Specialty::factory()->create([
              'name' => 'Tercer especialidad',
              'created_at' => now()->subDays(4),
          ]);
  
-         factory(Specialty::class)->times(7)->create([
+         Specialty::factory()->times(7)->create([
              'created_at' => now()->subDays(5),
          ]);
  
-         factory(Specialty::class)->create([
+         Specialty::factory()->create([
              'name' => 'Decimoséptimo especialidad',
              'created_at' => now()->subDays(2),
 
          ]);
  
-         factory(Specialty::class)->create([
+         Specialty::factory()->create([
              'name' => 'Segundo especialidad',
              'created_at' => now()->subDays(6),
 
          ]);
  
-         factory(Specialty::class)->create([
+         Specialty::factory()->create([
              'name' => 'Primer especialidad',
              'created_at' => now()->subWeek(),
 
          ]);
  
-         factory(Specialty::class)->create([
+         Specialty::factory()->create([
              'name' => 'Decimosexto especialidad',
              'created_at' => now()->subDays(3),
 
@@ -117,9 +117,9 @@ class ListSpecialtiesTest extends TestCase
     /** @test */
     function specialties_are_ordered_by_name()
     {
-         factory(Specialty::class)->create(['name' => 'Anestesiología']);
-         factory(Specialty::class)->create(['name' => 'Odontologia']);
-         factory(Specialty::class)->create(['name' => 'Medicina general']);
+         Specialty::factory()->create(['name' => 'Anestesiología']);
+         Specialty::factory()->create(['name' => 'Odontologia']);
+         Specialty::factory()->create(['name' => 'Medicina general']);
         $this->actingAs($this->user)
             ->get('/api/specialties?sort=name|asc')
             ->assertJson([
@@ -145,9 +145,9 @@ class ListSpecialtiesTest extends TestCase
     /** @test */
     function invalid_order_query_date_is_ignorad_and_default_order_is_used_instead()
     {
-        factory(Specialty::class)->create(['name' => 'Anestesiología', 'created_at' => now()->subDays(1)]);
-        factory(Specialty::class)->create(['name' => 'Odontologia', 'created_at' => now()->subDays(3)]);
-        factory(Specialty::class)->create(['name' => 'Medicina general', 'created_at' => now()->subDays(2)]);
+        Specialty::factory()->create(['name' => 'Anestesiología', 'created_at' => now()->subDays(1)]);
+        Specialty::factory()->create(['name' => 'Odontologia', 'created_at' => now()->subDays(3)]);
+        Specialty::factory()->create(['name' => 'Medicina general', 'created_at' => now()->subDays(2)]);
         
         $this->actingAs($this->user)
             ->get('/api/specialties?sort=id')

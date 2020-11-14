@@ -23,15 +23,15 @@ class CreateUsersTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->role = factory(Role::class)->create(['name' => 'Super Admin', 'guard_name' => 'api']);
-        $this->user = factory(User::class)->create();
+        $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
+        $this->user = User::factory()->create();
         
         $this->user->assignRole($this->role);
     }
     /** @test */
     function a_user_can_create_a_new_user()
     {
-        $role = factory(Role::class)->create(['name' => 'User Manager', 'guard_name' => 'api']);
+        $role = Role::factory()->create(['name' => 'User Manager', 'guard_name' => 'api']);
 
         $this->actingAs($this->user)
                 ->postJson('/api/users/store', $this->withData([
@@ -146,7 +146,7 @@ class CreateUsersTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        factory(User::class)->create([
+        User::factory()->create([
             'email' => 'felipe-guzman.c@hotmail.com'
         ]);
 

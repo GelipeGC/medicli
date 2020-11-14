@@ -102,7 +102,7 @@ class RegisterTest extends DuskTestCase
     /** @test */
     function can_not_register_with_the_same_twice()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->browse(function ($browser) use ($user){
             $browser->visit(new Register)

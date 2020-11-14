@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +28,7 @@ class UsersTableSeeder extends Seeder
     }
     protected function createSuperAdmin()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'name' => 'Super Admin',
             'email' => 'admin@test.com',
             'password' => bcrypt('secret123'),

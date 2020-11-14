@@ -14,8 +14,8 @@ class DeleteSpecialtiesTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->role = factory(Role::class)->create(['name' => 'Super Admin', 'guard_name' => 'api']);
-        $this->user = factory(User::class)->create();
+        $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
+        $this->user = User::factory()->create();
         
         $this->user->assignRole($this->role);
     }
@@ -24,7 +24,7 @@ class DeleteSpecialtiesTest extends TestCase
     {
         $this->handleValidationExceptions();
 
-        $specialty = factory(Specialty::class)->create([
+        $specialty = Specialty::factory()->create([
             'name' => 'Oftamologia'
         ]);
 

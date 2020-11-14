@@ -31,7 +31,7 @@ class RegisterTest extends TestCase
     /** @test */
     function a_user_can_not_register_with_existing_email()
     {
-        factory(User::class)->create([
+        User::factory()->create([
             'email' => 'felipe@test.com'
         ]);
 
