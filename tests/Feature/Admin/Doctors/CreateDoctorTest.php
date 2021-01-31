@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Doctors;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use App\Models\Role;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -22,7 +22,7 @@ class CreateDoctorTest extends TestCase
         parent::setUp();
         $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
         $this->user = User::factory()->create();
-            
+
         $this->user->assignRole($this->role);
     }
     /** @test */
@@ -39,7 +39,7 @@ class CreateDoctorTest extends TestCase
             ]);
         $this->assertDatabaseHas('users', [
             'name' => 'Felipe Guzmán',
-            'email' => 'felipe-guzman.c@hotmail.com',        
+            'email' => 'felipe-guzman.c@hotmail.com',
         ]);
     }
     /** @test */
@@ -53,7 +53,7 @@ class CreateDoctorTest extends TestCase
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['name']);
-        
+
         $this->assertDatabaseMissing('users', [
             'name' => 'Felipe Guzman'
         ]);
@@ -86,7 +86,7 @@ class CreateDoctorTest extends TestCase
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['name']);
-        
+
             $this->assertDatabaseMissing('users', [
                 'name' => 'Felipe Guzman'
             ]);
@@ -103,7 +103,7 @@ class CreateDoctorTest extends TestCase
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['email']);
-        
+
             $this->assertDatabaseMissing('users', [
                 'email' => 'felipe-guzman.c@hotmail.com'
             ]);
@@ -120,7 +120,7 @@ class CreateDoctorTest extends TestCase
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['email']);
-        
+
             $this->assertDatabaseMissing('users', [
                 'email' => 'felipe-guzman.c@hotmail.com'
             ]);
@@ -140,7 +140,7 @@ class CreateDoctorTest extends TestCase
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['email']);
-        
+
             $this->assertDatabaseMissing('users', [
                 'name' =>'Felipe dos',
                 'email' => 'felipe-guzman.c@hotmail.com'
@@ -158,7 +158,7 @@ class CreateDoctorTest extends TestCase
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['phone']);
-        
+
             $this->assertDatabaseMissing('users', [
                 'phone' => '223-23223'
             ]);
@@ -174,7 +174,7 @@ class CreateDoctorTest extends TestCase
                 'phone' => 'invalid-cel23'
             ]))
             ->assertJsonValidationErrors(['phone']);
-        
+
         $this->assertDatabaseMissing('users', [
             'name' => 'Felipe Guzmán',
             'email' => 'felipe-guzman.c@hotmail.com',
@@ -191,7 +191,7 @@ class CreateDoctorTest extends TestCase
                 'phone' => '2233-2343'//format valid 32-3322-3232
             ]))
             ->assertJsonValidationErrors(['phone']);
-        
+
         $this->assertDatabaseMissing('users', [
             'name' => 'Felipe Guzmán',
             'email' => 'felipe-guzman.c@hotmail.com',
@@ -209,7 +209,7 @@ class CreateDoctorTest extends TestCase
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['cedula']);
-        
+
             $this->assertDatabaseMissing('users', [
                 'cedula' => '234234324'
             ]);

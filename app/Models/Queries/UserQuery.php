@@ -1,17 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models\Queries;
 
-use App\Models\Area;
-use App\QueryFilter;
-use App\Models\Profession;
-use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
-use Illuminate\Database\Eloquent\Builder;
+use Fguzman\QueryBuilder;
 
 class UserQuery extends QueryBuilder
 {
-    
     public function findByEmail($email)
     {
         return $this->where(compact('email'))->first();
@@ -25,7 +19,7 @@ class UserQuery extends QueryBuilder
                 ->limit(1);
 
         $this->addSelect(['last_login_at' => $subselect]);
-        
+
         return $this;
     }
     public function withRole()
@@ -81,7 +75,4 @@ class UserQuery extends QueryBuilder
                     ->where('s.user_id', auth()->user()->id)
                     ->pluck('id')->toArray();
     }
-
-    
-
 }

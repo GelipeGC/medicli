@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Roles;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use App\Models\Role;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -13,7 +13,7 @@ class UpdateRolesTest extends TestCase
     protected $defaultData = [
         'name' => 'Manager',
     ];
-    /** @var \App\User */
+    /** @var \App\Models\User */
     protected $user;
 
     public function setUp(): void
@@ -21,7 +21,7 @@ class UpdateRolesTest extends TestCase
         parent::setUp();
         $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
         $this->user = User::factory()->create();
-        
+
         $this->user->assignRole($this->role);
     }
     /** @test */

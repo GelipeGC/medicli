@@ -2,13 +2,13 @@
 
 namespace Tests\Feature\Admin\Users;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 
 class SearchUsersTest extends TestCase
 {
-     /** @var \App\User */
+     /** @var \App\Models\User */
      protected $user;
 
      public function setUp(): void
@@ -17,7 +17,7 @@ class SearchUsersTest extends TestCase
          $this->user = User::factory()->create([
             'created_at' => now()->subWeek(2)
          ]);
- 
+
      }
    /** @test */
    function search_users_by_name()
@@ -36,7 +36,7 @@ class SearchUsersTest extends TestCase
                'data' => [
                    [ 'name' => 'Felipe'],
                ]
-            ]) 
+            ])
             ->assertJsonMissing([
                 'data' => [
                     ['name' => 'Deli']
@@ -56,12 +56,12 @@ class SearchUsersTest extends TestCase
        $this->actingAs($this->user)
            ->get('/api/users?search=Fel')
            ->assertSuccessful()
-           
+
            ->assertJson([
                'data' => [
                    [ 'name' => 'Felipe'],
                ]
-            ]) 
+            ])
             ->assertJsonMissing([
                 'data' => [
                     ['name' => 'Deli']
@@ -81,12 +81,12 @@ class SearchUsersTest extends TestCase
        $this->actingAs($this->user)
            ->get('/api/users?search=deli@example.mx')
            ->assertSuccessful()
-           
+
            ->assertJson([
                'data' => [
                    [ 'email' => 'deli@example.mx'],
                ]
-            ]) 
+            ])
             ->assertJsonMissing([
                 'data' => [
                     ['email' => 'felipe@example.com']
@@ -99,19 +99,19 @@ class SearchUsersTest extends TestCase
         User::factory()->create([
             'email' => 'felipe@example.com',
         ]);
- 
+
         User::factory()->create([
             'email' => 'deli@example.mx',
         ]);
         $this->actingAs($this->user)
             ->get('/api/users?search=deli@example')
             ->assertSuccessful()
-            
+
             ->assertJson([
                 'data' => [
                     [ 'email' => 'deli@example.mx'],
                 ]
-             ]) 
+             ])
              ->assertJsonMissing([
                  'data' => [
                      ['email' => 'felipe@example.com']

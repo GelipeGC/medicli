@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use App\OAuthProvider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,7 +22,7 @@ class OAuthController extends Controller
             'services.twitter.redirect' => route('oauth.callback', 'twitter'),
         ]);
     }
-    
+
     public function redirectToProvider($provider)
     {
         try {
@@ -70,7 +70,7 @@ class OAuthController extends Controller
 
         if (User::where('email', $user->getEmail())->exists()) {
             throw new EmailTakenException();
-            
+
         }
 
         return $this->createUser($provider, $user);

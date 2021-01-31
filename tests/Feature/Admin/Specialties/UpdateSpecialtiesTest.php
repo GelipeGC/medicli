@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Specialties;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use App\Models\Specialty;
 use App\Models\Role;
@@ -15,7 +15,7 @@ class UpdateSpecialtiesTest extends TestCase
         'name' => 'Oftamología',
         'description' => ''
     ];
-    /** @var \App\User */
+    /** @var \App\Models\User */
     protected $user;
 
     public function setUp(): void
@@ -23,7 +23,7 @@ class UpdateSpecialtiesTest extends TestCase
         parent::setUp();
         $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
         $this->user = User::factory()->create();
-        
+
         $this->user->assignRole($this->role);
     }
     /** @test */
@@ -149,7 +149,7 @@ class UpdateSpecialtiesTest extends TestCase
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['description']);
-        
+
             $this->assertDatabaseMissing('specialties', [
                 'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,'
             ]);

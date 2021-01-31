@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f83194eaca482822eb770bddf69c773",
+    "content-hash": "e9e93836eeb2949dd023eac564136727",
     "packages": [
         {
             "name": "brick/math",
@@ -402,6 +402,53 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
+        },
+        {
+            "name": "fguzman/query-filter-laravel",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GelipeGC/query-filter-laravel.git",
+                "reference": "56bf2923754e3b64cf7265be182b02f0deb1a8f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GelipeGC/query-filter-laravel/zipball/56bf2923754e3b64cf7265be182b02f0deb1a8f5",
+                "reference": "56bf2923754e3b64cf7265be182b02f0deb1a8f5",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "6.0|^7.0|^8.0",
+                "php": "^7.2.5|^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "orchestra/testbench": "^4.0",
+                "phpunit/phpunit": "^8.4|8.5.8|^9.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Fguzman\\QueryFilterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Fguzman\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Easy apply filters to your querys for eloquent orm by course panel styde",
+            "support": {
+                "issues": "https://github.com/GelipeGC/query-filter-laravel/issues",
+                "source": "https://github.com/GelipeGC/query-filter-laravel/tree/0.1.1"
+            },
+            "time": "2021-01-31T06:41:05+00:00"
         },
         {
             "name": "fideloper/proxy",

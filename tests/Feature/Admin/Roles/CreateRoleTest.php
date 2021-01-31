@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Roles;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use App\Models\Role;
 use Illuminate\Support\Facades\Artisan;
@@ -23,7 +23,7 @@ class CreateRoleTest extends TestCase
         $this->role = Role::factory()->create();
 
         $this->user = User::factory()->create();
-        
+
         $this->user->assignRole($this->role);
     }
     /** @test */
@@ -54,7 +54,7 @@ class CreateRoleTest extends TestCase
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['name']);
-        
+
         $this->assertDatabaseMissing('roles', [
             'name' => 'users_manage'
         ]);
@@ -88,7 +88,7 @@ class CreateRoleTest extends TestCase
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['name']);
-        
+
             $this->assertDatabaseMissing('roles', [
                 'name' => 'users_manage',
             ]);
@@ -117,9 +117,9 @@ class CreateRoleTest extends TestCase
         $role->revokePermissionTo('Create Role');
 
         $user = User::factory()->create();
-        
+
         $user->assignRole($role);
-        
+
 
         $this->actingAs($user)
             ->postJson('/api/roles/store', $this->withData([

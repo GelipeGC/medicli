@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Specialties;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use App\Models\Specialty;
 use App\Models\Role;
@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ListSpecialtiesTest extends TestCase
 {
-    /** @var \App\User */
+    /** @var \App\Models\User */
     protected $user;
 
     public function setUp(): void
@@ -19,7 +19,7 @@ class ListSpecialtiesTest extends TestCase
         parent::setUp();
         $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
         $this->user = User::factory()->create();
-        
+
         $this->user->assignRole($this->role);
     }
 
@@ -55,35 +55,35 @@ class ListSpecialtiesTest extends TestCase
              'name' => 'Tercer especialidad',
              'created_at' => now()->subDays(4),
          ]);
- 
+
          Specialty::factory()->times(7)->create([
              'created_at' => now()->subDays(5),
          ]);
- 
+
          Specialty::factory()->create([
              'name' => 'Decimoséptimo especialidad',
              'created_at' => now()->subDays(2),
 
          ]);
- 
+
          Specialty::factory()->create([
              'name' => 'Segundo especialidad',
              'created_at' => now()->subDays(6),
 
          ]);
- 
+
          Specialty::factory()->create([
              'name' => 'Primer especialidad',
              'created_at' => now()->subWeek(),
 
          ]);
- 
+
          Specialty::factory()->create([
              'name' => 'Decimosexto especialidad',
              'created_at' => now()->subDays(3),
 
          ]);
-         
+
 
         $this->actingAs($this->user)
             ->get('/api/specialties')
@@ -94,7 +94,7 @@ class ListSpecialtiesTest extends TestCase
                      [ 'name' => 'Tercer especialidad']
 
                  ]
-            ]) 
+            ])
              ->assertJsonMissing([
                  'data' => [
                      ['name' => 'Segundo especialidad'],
@@ -137,10 +137,10 @@ class ListSpecialtiesTest extends TestCase
                     ['name' => 'Odontologia'],
                     ['name' => 'Medicina general'],
                     ['name' => 'Anestesiología']
-                    
+
                 ]
             ]);
-            
+
     }
     /** @test */
     function invalid_order_query_date_is_ignorad_and_default_order_is_used_instead()
@@ -148,7 +148,7 @@ class ListSpecialtiesTest extends TestCase
         Specialty::factory()->create(['name' => 'Anestesiología', 'created_at' => now()->subDays(1)]);
         Specialty::factory()->create(['name' => 'Odontologia', 'created_at' => now()->subDays(3)]);
         Specialty::factory()->create(['name' => 'Medicina general', 'created_at' => now()->subDays(2)]);
-        
+
         $this->actingAs($this->user)
             ->get('/api/specialties?sort=id')
             ->assertJson([
@@ -167,6 +167,6 @@ class ListSpecialtiesTest extends TestCase
                     ['name' => 'Odontologia']
                 ]
             ]);
-        
+
     }
 }

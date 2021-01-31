@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Specialties;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use App\Models\Role;
 use App\Models\Specialty;
@@ -16,7 +16,7 @@ class DeleteSpecialtiesTest extends TestCase
         parent::setUp();
         $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
         $this->user = User::factory()->create();
-        
+
         $this->user->assignRole($this->role);
     }
     /** @test */

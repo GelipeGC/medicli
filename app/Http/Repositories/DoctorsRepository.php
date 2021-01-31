@@ -2,7 +2,7 @@
 
 namespace App\Http\Repositories;
 
-use App\User;
+use App\Models\User;
 use App\Http\Resources\DoctorResource;
 use App\Http\Support\JsonResponseTrait;
 
@@ -13,7 +13,7 @@ class DoctorsRepository
     protected $model;
     /**
      * DoctorsRepository constructor
-     * 
+     *
      * @param User $user
      */
     public function __construct(User $user)

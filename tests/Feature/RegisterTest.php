@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 
@@ -46,7 +46,7 @@ class RegisterTest extends TestCase
 
         $this->postJson('/api/register', $this->withData([
             'name' => '',
-            
+
         ]))
         ->assertJsonValidationErrors(['name']);
 
@@ -59,7 +59,7 @@ class RegisterTest extends TestCase
 
         $this->postJson('/api/register', $this->withData([
             'email' => '',
-            
+
         ]))
         ->assertJsonValidationErrors(['email']);
 
@@ -72,7 +72,7 @@ class RegisterTest extends TestCase
 
         $this->postJson('/api/register', $this->withData([
             'email' => 'invalid-email',
-            
+
         ]))
             ->assertJsonValidationErrors(['email']);
 
@@ -85,7 +85,7 @@ class RegisterTest extends TestCase
 
         $this->postJson('/api/register', $this->withData([
             'password' => '',
-            
+
         ]))
         ->assertJsonValidationErrors(['password']);
 

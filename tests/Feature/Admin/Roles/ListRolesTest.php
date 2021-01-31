@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Roles;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use App\Models\Role;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -20,7 +20,7 @@ class ListRolesTest extends TestCase
         ]);
 
         $this->user = User::factory()->create();
-        
+
         $this->user->assignRole($this->role);
     }
     /** @test */
@@ -55,35 +55,35 @@ class ListRolesTest extends TestCase
              'name' => 'Tercer role',
              'created_at' => now()->subDays(4),
          ]);
- 
+
          Role::factory()->times(7)->create([
              'created_at' => now()->subDays(5),
          ]);
- 
+
          Role::factory()->create([
              'name' => 'Decimoséptimo role',
              'created_at' => now()->subDays(2),
 
          ]);
- 
+
          Role::factory()->create([
              'name' => 'Segundo role',
              'created_at' => now()->subDays(6),
 
          ]);
- 
+
          Role::factory()->create([
              'name' => 'Primer role',
              'created_at' => now()->subWeek(),
 
          ]);
- 
+
          Role::factory()->create([
              'name' => 'Decimosexto role',
              'created_at' => now()->subDays(3),
 
          ]);
-         
+
 
         $this->actingAs($this->user)
             ->get('/api/roles')
@@ -94,7 +94,7 @@ class ListRolesTest extends TestCase
                      [ 'name' => 'Tercer role']
 
                  ]
-            ]) 
+            ])
              ->assertJsonMissing([
                  'data' => [
                      ['name' => 'Segundo role'],
@@ -138,10 +138,10 @@ class ListRolesTest extends TestCase
                     ['name' => 'Manager'],
                     ['name' => 'Editor'],
                     ['name' => 'Autor']
-                    
+
                 ]
             ]);
-            
+
     }
     /** @test */
     function invalid_order_query_is_ignorad_and_default_order_is_used_instead()
@@ -149,7 +149,7 @@ class ListRolesTest extends TestCase
         Role::factory()->create(['name' => 'Admin', 'created_at' => now()->subDays(1)]);
         Role::factory()->create(['name' => 'Editor', 'created_at' => now()->subDays(3)]);
         Role::factory()->create(['name' => 'Manager', 'created_at' => now()->subDays(2)]);
-        
+
         $this->actingAs($this->user)
             ->get('/api/roles?sort=id')
             ->assertJson([
@@ -168,6 +168,6 @@ class ListRolesTest extends TestCase
                     ['name' => 'Editor'],
                 ]
             ]);
-        
+
     }
 }

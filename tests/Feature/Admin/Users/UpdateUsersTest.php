@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Users;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use App\Models\Area;
 use App\Models\Role;
@@ -19,7 +19,7 @@ class UpdateUsersTest extends TestCase
         'address' => 'Callejon salsipuedes',
         'phone' =>'21-3456-7890',
     ];
-    /** @var \App\User */
+    /** @var \App\Models\User */
     protected $user;
 
     public function setUp(): void
@@ -127,8 +127,8 @@ class UpdateUsersTest extends TestCase
             'password' => 'secret123',
         ]);
     }
-    
-   
+
+
     /** @test */
     function the_phone_must_be_valid_when_update()
     {

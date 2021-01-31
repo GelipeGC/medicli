@@ -2,9 +2,10 @@
 
 namespace App;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
-class OAuthProvider extends Model 
+class OAuthProvider extends Model
 {
     protected $table = 'oauth_providers';
 

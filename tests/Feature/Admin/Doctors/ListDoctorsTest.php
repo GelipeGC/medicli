@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Doctors;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use App\Models\Role;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ListDoctorsTest extends TestCase
 {
-    /** @var \App\User */
+    /** @var \App\Models\User */
     protected $user;
 
     public function setUp(): void
@@ -18,7 +18,7 @@ class ListDoctorsTest extends TestCase
         parent::setUp();
         $this->role = Role::factory()->create(['name' => 'Doctor', 'guard_name' => 'api']);
         $this->user = User::factory()->create();
-        
+
         $this->user->assignRole($this->role);
     }
     /** @test */
@@ -49,5 +49,5 @@ class ListDoctorsTest extends TestCase
                 ]);
         $test->dump(); */
     }
-    
+
 }

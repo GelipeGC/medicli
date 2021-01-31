@@ -2,7 +2,7 @@
 
 namespace Tests\Browser;
 
-use App\User;
+use App\Models\User;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\Login;
@@ -10,7 +10,7 @@ use Tests\Browser\Pages\HomePage;
 
 class LoginTest extends DuskTestCase
 {
-    
+
     /** @test */
     function login_with_valid_credentials()
     {
@@ -37,7 +37,7 @@ class LoginTest extends DuskTestCase
                     ->assertSee('These credentials do not match our records.');
                 });
     }
-    
+
     function logout_the_user()
     {
         $user = User::factory()->create();
@@ -50,5 +50,5 @@ class LoginTest extends DuskTestCase
                     ->assertPageIs(Login::class);
                 });
     }
-    
+
 }

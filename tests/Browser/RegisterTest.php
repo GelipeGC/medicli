@@ -2,7 +2,7 @@
 
 namespace Tests\Browser;
 
-use App\User;
+use App\Models\User;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\HomePage;
@@ -13,7 +13,7 @@ class RegisterTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
-    
+
     /** @test */
     public function register_with_valid_data()
     {
@@ -38,7 +38,7 @@ class RegisterTest extends DuskTestCase
         });
     }
 
-    
+
     /** @test */
     function the_name_is_required()
     {
@@ -52,7 +52,7 @@ class RegisterTest extends DuskTestCase
                 ])
                 ->assertSee('The name field is required.');
         });
-        
+
     }
     /** @test */
     function the_email_is_required()
@@ -67,7 +67,7 @@ class RegisterTest extends DuskTestCase
                 ])
                 ->assertSee('The email field is required.');
         });
-        
+
     }
     /** @test */
     function the_email_must_be_valid()
@@ -82,7 +82,7 @@ class RegisterTest extends DuskTestCase
                 ])
                 ->assertSee('The email must be a valid email address.');
         });
-        
+
     }
     /** @test */
     function the_password_is_required()
@@ -97,7 +97,7 @@ class RegisterTest extends DuskTestCase
                 ])
                 ->assertSee('The password field is required.');
         });
-        
+
     }
     /** @test */
     function can_not_register_with_the_same_twice()

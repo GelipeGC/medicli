@@ -1,7 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use App\OAuthProvider;
+use App\Filters\UserFilter;
+use App\Models\Queries\UserQuery;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -32,19 +35,16 @@ class User extends Authenticatable implements JWTSubject
     ];
 
 
-    /**
-     * @return UserQuery
-     */
-    public static function query()
+    public function newQueryFilter()
     {
-        return parent::query();
+        return new UserFilter();
     }
 
     public function newEloquentBuilder($query)
     {
         return new UserQuery($query);
     }
-    
+
     /**
      * Set permissions guard to API by default
      * @var string

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -37,10 +37,10 @@ class LoginTest extends TestCase
             ->assertSuccessful()
             ->assertJsonStructure([
                 'data' => ['id', 'name', 'email']
-                ]   
+                ]
             );
     }
-    
+
     /** @test */
     function the_email_is_required()
     {

@@ -2,12 +2,9 @@
 
 namespace App\Filters;
 
-use App\Login;
-use App\Sortable;
-use Carbon\Carbon;
-use Illuminate\Support\Str;
-use App\Rules\SortableColumn;
-use Illuminate\Support\Facades\DB;
+use Fguzman\Sortable;
+use Fguzman\QueryFilter;
+use Fguzman\Rules\SortableColumn;
 
 class UserFilter extends QueryFilter
 {
@@ -38,11 +35,11 @@ class UserFilter extends QueryFilter
             ->orWhere('created_at', 'like', "%{$search}%");
         });
     }
-    
+
     public function sort($query, $value)
     {
         [$column, $direction] = Sortable::info($value);
-        
+
         $query->orderBy($this->getColumnName($column), $direction);
     }
 

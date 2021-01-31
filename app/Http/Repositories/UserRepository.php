@@ -2,7 +2,7 @@
 
 namespace App\Http\Repositories;
 
-use App\User;
+use App\Models\User;
 use App\Sortable;
 use App\Models\Area;
 use App\Mail\WelcomeMail;
@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class UserRepository implements UserInterface
 {
     use JsonResponseTrait, GeneralTrait;
-    
+
     protected $model;
 
     /**
@@ -49,7 +49,7 @@ class UserRepository implements UserInterface
      * Store a new created user in database.
      *
      * @param  array $data
-     * @return array $json 
+     * @return array $json
      */
 
     public function create(array $data)
@@ -111,7 +111,7 @@ class UserRepository implements UserInterface
                 return $this->sendSuccessfullyResponse('success',trans('users.update'),201,$user);
             }
             return $this->sendFailedResponse('success',trans('users.failed'), 500);
-            
+
         } catch (QueryException $e) {
             return $this->sendFailedResponse('success', $e->getMessage(), 500);
 
@@ -131,7 +131,7 @@ class UserRepository implements UserInterface
         if ($user->status == $this->model::ACTIVE) {
             return $this->sendFailedResponse('success', trans('users.failed'), 403);
         }
-        
+
 
         if ($user->delete()) {
             return $this->sendSuccessfullyResponse('success', trans('users.delete'), 200);
@@ -140,10 +140,10 @@ class UserRepository implements UserInterface
     }
     /**
      * Send message a new user to welcome
-     * 
+     *
      * @param object $user
      * @param string $password
-     * 
+     *
      */
     protected function sendMailWelcome($user, $password)
     {
@@ -151,10 +151,10 @@ class UserRepository implements UserInterface
     }
     /**
      * Change status of user in database
-     * 
+     *
      * @param array $data
      * @param int $id
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function changeStatus(array $data, $id)
@@ -167,6 +167,6 @@ class UserRepository implements UserInterface
         }
         return $this->sendFailedResponse('success',trans('users.failed'), 500);
 
-    }  
+    }
 
 }

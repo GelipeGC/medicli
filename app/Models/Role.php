@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Models;
-use App\User;
-use App\QueryBuilder;
+use App\Models\User;
+use Fguzman\QueryBuilder;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,6 +24,5 @@ class Role extends \Spatie\Permission\Models\Role
     {
         return new QueryBuilder($query);
     }
-    
-
 }
+

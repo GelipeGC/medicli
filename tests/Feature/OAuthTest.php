@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 
-use App\User;
+use App\Models\User;
 use Mockery as m;
 use Laravel\Socialite\Facades\Socialite;
 use PHPUnit\Framework\Assert as PHPUnit;

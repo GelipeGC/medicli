@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin\Users;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 use App\Models\Role;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -17,7 +17,7 @@ class CreateUsersTest extends TestCase
         'address' => 'Callejon salsipuedes',
         'phone' =>'21-3456-7890',
     ];
-    /** @var \App\User */
+    /** @var \App\Models\User */
     protected $user;
 
     public function setUp(): void
@@ -25,7 +25,7 @@ class CreateUsersTest extends TestCase
         parent::setUp();
         $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
         $this->user = User::factory()->create();
-        
+
         $this->user->assignRole($this->role);
     }
     /** @test */
@@ -47,7 +47,7 @@ class CreateUsersTest extends TestCase
         $this->assertDatabaseHas('users', [
             'email' => 'felipe-guzman.c@hotmail.com',
         ]);
-        
+
     }
     /** @test */
     function the_name_field_is_required()
@@ -68,7 +68,7 @@ class CreateUsersTest extends TestCase
             ]);
 
     }
-    
+
     /** @test */
     function the_name_field_contain_min_three_characters()
     {
@@ -99,7 +99,7 @@ class CreateUsersTest extends TestCase
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['name']);
-        
+
             $this->assertDatabaseMissing('users', [
                 'name' => 'Felipe',
                 'email' => 'felipe-guzman.c@hotmail.com',
