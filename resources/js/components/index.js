@@ -6,17 +6,13 @@ import Child from './Child'
 import Button from './Button'
 import Checkbox from './Checkbox'
 import BasicInput from './BasicInput'
-import BaseNav from './BaseNav'
 import { HasError, AlertError, AlertSuccess } from 'vform'
-
-Vue.use(Vuetable);
 
 // Components that are registered globaly.
 [
     Card,
     Child,
     Button,
-    BaseNav,
     Vuetable,
     Checkbox,
     HasError,

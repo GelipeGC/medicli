@@ -3,10 +3,9 @@ import store from '~/store'
 import router from '~/router'
 import i18n from '~/plugins/i18n'
 import App from '~/components/App'
-import ArgonDashboard from 'vue-argon-dashboard/src/plugins/argon-dashboard'
+//import ArgonDashboard from 'vue-argon-dashboard/src/plugins/argon-dashboard'
 
-Vue.use(ArgonDashboard);
-require('./bootstrap');
+//Vue.use(ArgonDashboard);
 
 import '~/plugins'
 import '~/components'
