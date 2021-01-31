@@ -1,5 +1,5 @@
 import './axios'
 import './fontawesome'
 import 'bootstrap'
-import './vue-tooltip'
+//import './vue-tooltip'
 import './sweetAlert'
