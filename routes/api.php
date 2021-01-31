@@ -18,7 +18,7 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('register', 'Auth\RegisterController@register');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-    
+
     Route::post('oauth/{driver}', 'Auth\OAuthController@redirectToProvider');
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
 });
@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/roles/{role}/unassign/{user}', 'RoleManagerController@rolesRemoveUser')
         ->name('roles.removeUser')
         ->middleware('permission:Unassign Role');
-    
+
 });
 Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function(){
     Route::group(['prefix' => 'users'], function() {
@@ -69,11 +69,13 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Admin'], function(){
         Route::put('/{specialty}/update', 'SpecialtyController@update')->name('specialties.update');
         Route::post('/store', 'SpecialtyController@store')->name('specialties.store');
         Route::delete('/{id}/delete', 'SpecialtyController@destroy')->name('specialties.delete');
-    }); 
+    });
     //doctors
     Route::group(['prefix' => 'doctors'], function() {
         Route::get('/', 'DoctorController@index')->name('doctors');
         Route::post('/store', 'DoctorController@store')->name('doctors.create');
+        Route::put('/{doctor}/update', 'DoctorController@update')->name('doctors.update');
+        Route::delete('/{id}/delete', 'DoctorController@destroy')->name('doctors.delete');
     });
 });
 

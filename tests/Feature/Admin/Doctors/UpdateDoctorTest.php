@@ -2,58 +2,52 @@
 
 namespace Tests\Feature\Admin\Doctors;
 
-use App\Models\User;
 use Tests\TestCase;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class CreateDoctorTest extends TestCase
+class UpdateDoctorTest extends TestCase
 {
-   protected $defaultData = [
-       'name' => 'Felipe Guzmán',
-       'email' => 'felipe-guzman.c@hotmail.com',
-       'cedula' => '234234324',
-       'address' => 'Callejon salsipuedes',
-       'phone' => '32-3322-3232',
-       'role_id' => ''
-   ];
-    public function setUp(): void
+    protected $defaultData = [
+        'name' => 'Felipe Guzmán',
+        'email' => 'felipe-guzman.c@hotmail.com',
+        'cedula' => '234234324',
+        'address' => 'Callejon salsipuedes',
+        'phone' => '32-3322-3232',
+        'role_id' => ''
+    ];
+     public function setUp(): void
     {
         parent::setUp();
         $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
         $this->user = User::factory()->create();
-
-        $this->roleDoctor = Role::factory()->create(['name' => 'Doctor', 'guard_name' => 'api']);
         $this->user->assignRole($this->role);
+
+        $this->doctor = User::factory()->create();
+        $this->roleDoctor = Role::factory()->create(['name' => 'Doctor', 'guard_name' => 'api']);
+        $this->doctor->assignRole($this->roleDoctor);
     }
-    /** @test */
-    function a_user_can_create_a_new_doctor()
+     /** @test */
+    function it_updates_a_doctor()
     {
         $this->handleValidationExceptions();
 
-        $createUser = $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+        $this->actingAs($this->user)
+            ->putJson("/api/doctors/{$this->doctor->id}/update", $this->withData([
+                'name' => 'update doctor',
+                'email' => 'test@test.app',
                 'role_id' => $this->roleDoctor->id
             ]))
             ->assertSuccessful()
             ->assertJson([
                 'success' => true,
-                'message' => 'Médico creado con éxito.'
+                'message' => 'Médico actualizado con éxito.'
             ]);
-
         $this->assertDatabaseHas('users', [
-            'id' => $createUser['data']['id'],
-            'name' => 'Felipe Guzmán',
-            'email' => 'felipe-guzman.c@hotmail.com',
-        ]);
-
-        $this->assertDatabaseHas('roles', [
-            'name' => 'Doctor'
-        ]);
-        $this->assertDatabaseHas('model_has_roles', [
-            'role_id' => $this->roleDoctor->id,
-            'model_id' => $createUser['data']['id']
+            'id' => $this->doctor->id,
+            'name' => 'update doctor',
+            'email' => 'test@test.app',
         ]);
 
     }
@@ -63,7 +57,7 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->putJson("/api/doctors/{$this->doctor->id}/update", $this->withData([
                 'name' => ''
             ]))
             ->assertStatus(422)
@@ -79,7 +73,7 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->putJson("/api/doctors/{$this->doctor->id}/update", $this->withData([
                 'name' => 'of'
             ]))
             ->assertStatus(422)
@@ -96,7 +90,7 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->putJson("/api/doctors/{$this->doctor->id}/update", $this->withData([
                 'name' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,',
             ]))
             ->assertStatus(422)
@@ -113,7 +107,7 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->putJson("/api/doctors/{$this->doctor->id}/update", $this->withData([
                 'email' => '',
             ]))
             ->assertStatus(422)
@@ -130,7 +124,7 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->putJson("/api/doctors/{$this->doctor->id}/update", $this->withData([
                 'email' => 'invalid-email',
             ]))
             ->assertStatus(422)
@@ -149,7 +143,7 @@ class CreateDoctorTest extends TestCase
             'email' => 'felipe-guzman.c@hotmail.com'
         ]);
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->putJson("/api/doctors/{$this->doctor->id}/update", $this->withData([
                 'name' => 'Felipe dos',
                 'email' => 'felipe-guzman.c@hotmail.com',
             ]))
@@ -168,7 +162,7 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->putJson("/api/doctors/{$this->doctor->id}/update", $this->withData([
                 'phone' => '',
             ]))
             ->assertStatus(422)
@@ -185,7 +179,7 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->putJson("/api/doctors/{$this->doctor->id}/update", $this->withData([
                 'phone' => 'invalid-cel23'
             ]))
             ->assertJsonValidationErrors(['phone']);
@@ -202,7 +196,7 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->putJson("/api/doctors/{$this->doctor->id}/update", $this->withData([
                 'phone' => '2233-2343'//format valid 32-3322-3232
             ]))
             ->assertJsonValidationErrors(['phone']);
@@ -219,7 +213,7 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->putJson("/api/doctors/{$this->doctor->id}/update", $this->withData([
                 'cedula' => '',
             ]))
             ->assertStatus(422)
@@ -236,7 +230,7 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $test = $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->putJson("/api/doctors/{$this->doctor->id}/update", $this->withData([
                 'role_id' => ''
             ]))
             ->assertStatus(422)
@@ -252,7 +246,7 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $test = $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->putJson("/api/doctors/{$this->doctor->id}/update", $this->withData([
                 'role_id' => '100'
             ]))
             ->assertStatus(422)
@@ -263,4 +257,3 @@ class CreateDoctorTest extends TestCase
         ]);
     }
 }
-

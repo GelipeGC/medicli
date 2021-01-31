@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Doctor\CreateRequest;
+use App\Http\Requests\Doctor\UpdateRequest;
 use App\Http\Repositories\DoctorsRepository;
 
 class DoctorController extends Controller
@@ -37,37 +38,15 @@ class DoctorController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        //
+        return $this->doctorRepository->update($request->validated(), $id);
     }
 
     /**
@@ -78,6 +57,6 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->doctorRepository->delete($id);
     }
 }
