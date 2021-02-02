@@ -1,173 +1,173 @@
 <?php
 
-namespace Tests\Feature\Admin\Doctors;
+namespace Tests\Feature\Admin\Patients;
 
-use App\Models\User;
 use Tests\TestCase;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class CreateDoctorTest extends TestCase
+class CreatePatientTest extends TestCase
 {
-   protected $defaultData = [
-       'name' => 'Felipe Guzmán',
-       'email' => 'felipe-guzman.c@hotmail.com',
-       'cedula' => '234234324',
-       'address' => 'Callejon salsipuedes',
-       'phone' => '32-3322-3232',
-       'role_id' => ''
-   ];
+    protected $defaultData = [
+        'name' => 'Deli',
+        'email' => 'deli@hotmail.com',
+        'cedula' => '234234324',
+        'address' => 'Callejon salsipuedes',
+        'phone' => '32-3322-3232',
+        'role_id' => ''
+    ];
     public function setUp(): void
     {
         parent::setUp();
         $this->role = Role::factory()->create(['name' => 'Super Admin', 'guard_name' => 'api']);
         $this->user = User::factory()->create();
 
-        $this->roleDoctor = Role::factory()->create(['name' => 'Doctor', 'guard_name' => 'api']);
+        $this->rolePatient = Role::factory()->create(['name' => 'Patient', 'guard_name' => 'api']);
     }
     /** @test */
-    function a_user_can_create_a_new_doctor()
+    function it_create_a_new_patient_user()
     {
         $this->handleValidationExceptions();
 
         $createUser = $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
-                'role_id' => $this->roleDoctor->id
+            ->postJson('/api/patients/store', $this->withData([
+                'role_id' => $this->rolePatient->id
             ]))
             ->assertSuccessful()
             ->assertJson([
                 'success' => true,
-                'message' => 'Médico creado con éxito.'
+                'message' => 'Paciente creado con éxito.'
             ]);
 
         $this->assertDatabaseHas('users', [
             'id' => $createUser['data']['id'],
-            'name' => 'Felipe Guzmán',
-            'email' => 'felipe-guzman.c@hotmail.com',
+            'name' => 'Deli',
+            'email' => 'deli@hotmail.com',
         ]);
 
         $this->assertDatabaseHas('roles', [
-            'name' => 'Doctor'
+            'name' => 'Patient'
         ]);
         $this->assertDatabaseHas('model_has_roles', [
-            'role_id' => $this->roleDoctor->id,
+            'role_id' => $this->rolePatient->id,
             'model_id' => $createUser['data']['id']
         ]);
 
     }
-    /** @test */
-    function the_doctor_name_field_is_required()
+     /** @test */
+    function the_patient_name_field_is_required()
     {
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->postJson('/api/patients/store', $this->withData([
                 'name' => ''
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['name']);
 
         $this->assertDatabaseMissing('users', [
-            'name' => 'Felipe Guzman'
+            'name' => 'Deli'
         ]);
     }
     /** @test */
-    function the_doctor_name_field_contain_min_three_characters()
+    function the_patient_name_field_contain_min_three_characters()
     {
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->postJson('/api/patients/store', $this->withData([
                 'name' => 'of'
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['name']);
 
        $this->assertDatabaseMissing('users', [
-            'name' => 'Felipe Guzman'
+            'name' => 'Deli'
         ]);
 
     }
     /** @test */
-    function the_doctor_name_field_contain_max_characters()
+    function the_patient_name_field_contain_max_characters()
     {
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->postJson('/api/patients/store', $this->withData([
                 'name' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,',
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['name']);
 
             $this->assertDatabaseMissing('users', [
-                'name' => 'Felipe Guzman'
+                'name' => 'Deli'
             ]);
 
     }
     /** @test */
-    function the_doctor_email_field_is_required()
+    function the_patient_email_field_is_required()
     {
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->postJson('/api/patients/store', $this->withData([
                 'email' => '',
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['email']);
 
             $this->assertDatabaseMissing('users', [
-                'email' => 'felipe-guzman.c@hotmail.com'
+                'email' => 'deli@hotmail.com'
             ]);
 
     }
     /** @test */
-    function the_doctor_email_must_be_valid()
+    function the_patient_email_must_be_valid()
     {
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->postJson('/api/patients/store', $this->withData([
                 'email' => 'invalid-email',
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['email']);
 
             $this->assertDatabaseMissing('users', [
-                'email' => 'felipe-guzman.c@hotmail.com'
+                'email' => 'deli@hotmail.com'
             ]);
 
     }
     /** @test */
-    function the_doctor_email_must_be_unique()
+    function the_patient_email_must_be_unique()
     {
         $this->handleValidationExceptions();
         User::factory()->create([
-            'email' => 'felipe-guzman.c@hotmail.com'
+            'email' => 'deli@hotmail.com'
         ]);
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
-                'name' => 'Felipe dos',
-                'email' => 'felipe-guzman.c@hotmail.com',
+            ->postJson('/api/patients/store', $this->withData([
+                'name' => 'Deli hope',
+                'email' => 'deli@hotmail.com',
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['email']);
 
             $this->assertDatabaseMissing('users', [
-                'name' =>'Felipe dos',
-                'email' => 'felipe-guzman.c@hotmail.com'
+                'name' =>'Deli hope',
+                'email' => 'deli@hotmail.com'
             ]);
 
     }
     /** @test */
-    function the_doctor_phone_field_is_required()
+    function the_patient_phone_field_is_required()
     {
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->postJson('/api/patients/store', $this->withData([
                 'phone' => '',
             ]))
             ->assertStatus(422)
@@ -184,14 +184,14 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->postJson('/api/patients/store', $this->withData([
                 'phone' => 'invalid-cel23'
             ]))
             ->assertJsonValidationErrors(['phone']);
 
         $this->assertDatabaseMissing('users', [
-            'name' => 'Felipe Guzmán',
-            'email' => 'felipe-guzman.c@hotmail.com',
+            'name' => 'Deli',
+            'email' => 'deli@hotmail.com',
             'password' => 'secret123',
         ]);
     }
@@ -201,24 +201,24 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->postJson('/api/patients/store', $this->withData([
                 'phone' => '2233-2343'//format valid 32-3322-3232
             ]))
             ->assertJsonValidationErrors(['phone']);
 
         $this->assertDatabaseMissing('users', [
-            'name' => 'Felipe Guzmán',
-            'email' => 'felipe-guzman.c@hotmail.com',
+            'name' => 'Deli',
+            'email' => 'deli@hotmail.com',
             'password' => 'secret123',
         ]);
     }
     /** @test */
-    function the_doctor_cedula_field_is_required()
+    function the_patient_cedula_field_is_required()
     {
         $this->handleValidationExceptions();
 
         $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->postJson('/api/patients/store', $this->withData([
                 'cedula' => '',
             ]))
             ->assertStatus(422)
@@ -235,14 +235,14 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $test = $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->postJson('/api/patients/store', $this->withData([
                 'role_id' => ''
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['role_id']);
 
         $this->assertDatabaseMissing('users', [
-            'name' => 'Felipe Guzman'
+            'name' => 'Deli'
         ]);
     }
     /** @test */
@@ -251,14 +251,14 @@ class CreateDoctorTest extends TestCase
         $this->handleValidationExceptions();
 
         $test = $this->actingAs($this->user)
-            ->postJson('/api/doctors/store', $this->withData([
+            ->postJson('/api/patients/store', $this->withData([
                 'role_id' => '100'
             ]))
             ->assertStatus(422)
             ->assertJsonValidationErrors(['role_id']);
 
         $this->assertDatabaseMissing('users', [
-            'name' => 'Felipe Guzman'
+            'name' => 'Deli'
         ]);
     }
 }

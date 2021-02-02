@@ -20,6 +20,8 @@ class UserRepository implements UserInterface
 {
     use JsonResponseTrait, GeneralTrait;
 
+    const ITEM_PER_PAGE = 10;
+
     protected $model;
 
     /**
@@ -43,7 +45,7 @@ class UserRepository implements UserInterface
                             ->select(['id','name','phone','email','created_at'])
                             ->applyFilters()
                             ->orderByDesc('created_at')
-                            ->paginate(10);
+                            ->paginate(static::ITEM_PER_PAGE);
     }
     /**
      * Store a new created user in database.

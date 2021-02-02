@@ -16,11 +16,11 @@ class DoctorsRepository
     /**
      * DoctorsRepository constructor
      *
-     * @param User $user
+     * @param User $doctor
      */
-    public function __construct(User $user)
+    public function __construct(User $doctor)
     {
-        $this->model = $user;
+        $this->model = $doctor;
     }
     /**
      * Display a listing of the resource and apply filters by users.
@@ -34,7 +34,7 @@ class DoctorsRepository
                             ->onlyDoctors()
                             ->applyFilters()
                             ->orderByDesc('created_at')
-                            ->paginate(10);
+                            ->paginate(static::ITEM_PER_PAGE);
     }
     public function create(array $data)
     {
@@ -58,14 +58,14 @@ class DoctorsRepository
     public function update(array $data, int $id)
     {
         try {
-            $user = $this->model::findOrFail($id);
-            $user->name = $this->initCap($data['name']);
-            $user->email = Str::lower($data['email']);
-            $user->phone = $data['phone'];
-            $user->address = $data['address'];
-            if ($user->update()) {
+            $doctor = $this->model::findOrFail($id);
+            $doctor->name = $this->initCap($data['name']);
+            $doctor->email = Str::lower($data['email']);
+            $doctor->phone = $data['phone'];
+            $doctor->address = $data['address'];
+            if ($doctor->update()) {
 
-                return $this->sendSuccessfullyResponse('success',trans('doctors.update'),201,$user);
+                return $this->sendSuccessfullyResponse('success',trans('doctors.update'),201,$doctor);
             }
             return $this->sendFailedResponse('success',trans('doctors.failed'), 500);
 
@@ -82,17 +82,16 @@ class DoctorsRepository
      */
     public function delete($id)
     {
-        $user = $this->model::findOrFail($id);
+        $doctor = $this->model::findOrFail($id);
 
-        if ($user->status == $this->model::ACTIVE) {
+        if ($doctor->status == $this->model::ACTIVE) {
             return $this->sendFailedResponse('success', trans('doctors.failed'), 403);
         }
 
 
-        if ($user->delete()) {
+        if ($doctor->delete()) {
             return $this->sendSuccessfullyResponse('success', trans('doctors.delete'), 200);
         }
         return $this->sendFailedResponse('success', trans('doctors.failed'), 500);
     }
 }
-

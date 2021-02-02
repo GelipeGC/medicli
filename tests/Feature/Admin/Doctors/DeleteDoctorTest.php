@@ -17,7 +17,7 @@ class DeleteDoctorTest extends TestCase
         $this->user = User::factory()->create();
         $this->user->assignRole($this->role);
 
-        $this->doctor = User::factory()->create();
+        $this->doctor = User::factory([ 'status' => 0])->create();
         $this->roleDoctor = Role::factory()->create(['name' => 'Doctor', 'guard_name' => 'api']);
         $this->doctor->assignRole($this->roleDoctor);
     }

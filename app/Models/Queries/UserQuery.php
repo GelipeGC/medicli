@@ -20,5 +20,12 @@ class UserQuery extends QueryBuilder
 
         return $this;
     }
-}
+    public function onlyPatients()
+    {
+        $this->whereHas('roles', function($q) {
+            $q->where('name', 'Patient');
+        });
 
+        return $this;
+    }
+}
