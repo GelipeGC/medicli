@@ -1,0 +1,96 @@
+.border-bottom {
+    border-bottom: 1px solid #DDE6FD !important;
+}
+
+.h5 {
+    color: #556385 !important;
+}
+
+.bg-gray-slow {
+    background-color: #F1F5FF;
+}
+
+.text-gray-slow {
+    color: #8B98B8;
+}
+
+.text-blue-slow {
+    color: #556385;
+}
+
+.bg-info {
+    background-color: #6591FF !important;
+}
+
+.bg-danger {
+    background-color: #FA5C7C !important;
+}
+
+.text-danger {
+    color: #FA5C7C !important;
+}
+
+.bg-proceso {
+    background-color: #6591FF !important;
+}
+
+.bg-cancelado {
+    background-color: #FA5C7C !important;
+}
+
+.bg-completado {
+    background-color: #0BCF97 !important;
+}
+
+.bg-completado-parcial {
+    background-color: #AFDEA0 !important;
+}
+
+.bg-cerrado-parcial {
+    background-color: #FFCD8E !important;
+}
+
+.bg-cerrado-total {
+    background-color: #FF8F8E !important;
+}
+
+.bg-white-slow {
+    background-color: #DDE6FD;
+}
+
+.max-height-log-event-list{
+  max-height: 694px;
+}
+
+.event-check.custom-control-label::after {
+    border-radius: 5px;
+    width: 18px;
+    height: 18px;
+}
+
+.event-check.custom-control-label::before {
+    border: 1px solid #8B98B8;
+    border-radius: 5px;
+    width: 18px;
+    height: 18px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+    opacity: 1;
+    color: #8B98B8;
+    background-color: #DDE6FD;
+    border-color: #DDE6FD;
+}
+
+.btn-primary {
+    box-shadow: 0 2px 4px 0 rgba(139,152,184,0.7) !important;
+}
+
+.swal2-container{
+    z-index: 9999 !important;
+}

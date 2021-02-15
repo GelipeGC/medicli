@@ -29,10 +29,10 @@ $polyfills = [
 
         <title>{{ config('app.name') }}</title>
 
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link rel="stylesheet" href="{{ mix('/dist/css/app.css') }}">
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     </head>
-    <body>
+    <body class="authentication-bg">
         <div id="app"></div>
 
         {{-- Global configuration object --}}
@@ -42,7 +42,7 @@ $polyfills = [
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features={{ implode(',', $polyfills) }}"></script>
 
     {{-- Load the application scripts --}}
-    <script src="{{ mix('js/app.js') }}"></script>
-    
+    <script src="{{ mix('/dist/js/app.js') }}"></script>
+
     </body>
 </html>

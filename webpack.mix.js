@@ -1,23 +1,21 @@
-let mix = require('laravel-mix');
-
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for your application, as well as bundling up your JS files.
- |
- */
+const path = require('path')
+const fs = require('fs-extra')
+const mix = require('laravel-mix')
+require('laravel-mix-versionhash')
+    // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 mix
-    .js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .js('resources/js/app.js', 'public/dist/js')
+    .sass('resources/sass/app.scss', 'public/dist/css')
+
+.disableNotifications()
 
 if (mix.inProduction()) {
-    mix.version();
+    mix.versionHash()
+} else {
+    mix.sourceMaps()
 }
+
 mix.webpackConfig({
     plugins: [
         // new BundleAnalyzerPlugin()
@@ -27,6 +25,25 @@ mix.webpackConfig({
         alias: {
             '~': path.join(__dirname, './resources/js')
         }
+    },
+    output: {
+        chunkFilename: 'dist/js/[chunkhash].js',
+        path: mix.config.hmr ?
+            '/' :
+            path.resolve(__dirname, mix.inProduction() ? './public/build' : './public')
     }
-
 })
+
+mix.then(() => {
+    if (mix.inProduction()) {
+        process.nextTick(() => publishAseets())
+    }
+})
+
+function publishAseets() {
+    const publicDir = path.resolve(__dirname, './public')
+
+    fs.removeSync(path.join(publicDir, 'dist'))
+    fs.copySync(path.join(publicDir, 'build', 'dist'), path.join(publicDir, 'dist'))
+    fs.removeSync(path.join(publicDir, 'build'))
+}

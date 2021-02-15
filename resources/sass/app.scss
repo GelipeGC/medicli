@@ -1,15 +1,37 @@
-
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-@import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
-
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+@import "config/modern/variables";
+@import "config/modern/custom-variables";
+// Structure
+@import "custom/structure/structure";
+@import "custom/structure/general";
+@import "custom/structure/left-menu";
+@import "custom/structure/topbar";
+@import "custom/structure/right-sidebar";
+@import "custom/structure/page-head";
+@import "custom/structure/footer";
+// horizontal nav
+@import "custom/structure/horizontal-nav";
+//Fonts
+@import "custom/fonts/nunito";
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap');
+//Components
+@import "custom/components/mixins";
+@import "custom/components/avatar";
+@import "custom/components/card";
+@import "custom/components/dropdown";
+@import "custom/components/forms";
+@import "custom/components/modal";
+@import "custom/components/nav";
+@import "custom/components/pagination";
+@import "custom/components/tables";
+@import "custom/components/type";
+@import "custom/components/hero";
+//Pages
+@import "custom/pages/authentication";
+@import "custom/pages/maintenance";
+@import "custom/pages/email";
+// Plugins
+@import "custom/plugins/metis-menu";
+@import "custom/plugins/slimscroll";
+@import "custom/plugins/icons";
